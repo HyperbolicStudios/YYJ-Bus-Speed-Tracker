@@ -1,0 +1,71 @@
+<!doctype html>
+
+<head>
+  <title>Ridership Playground</title>
+  <meta charset="UTF-8" />
+  <script src="https://kit.fontawesome.com/895917e848.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  </head>
+
+
+<body>
+
+  <header id="topHeader" onclick="openNav()">
+    <div></div>
+    <h3>YYJ Bus Speed Tracker</h3>
+
+    <h3 class="align-right openButton">Menu &nbsp;&#9776;</h3>
+    <div></div>
+  </header>
+
+  <nav id="menu">
+    <div onclick="closeNav()">
+      <h5 class="menu-text close" id="closeButton">&times;</h5>
+    </div>
+    <a href="index.html">
+      <h5 class="menu-text">Home</h5>
+    </a>
+    <a href="https://github.com/hyperbolicstudios">
+      <h5 class="menu-text">About</h5>
+    </a>
+    <div></div>
+
+  </nav>
+  <section class="divider">
+  </section>
+
+  <html>
+  <iframe id="igraph",scrolling="no" style="border:none;" seamless="seamless" src="/plotly" height="700" width="100%"></iframe>
+  </html>
+
+<section>
+  <div id="center" onclick="update()">update</div>
+</section>
+
+<br><br><br>
+
+<section class="container">
+
+<p>
+  New data comes in every 15-20 seconds. Source: <a href="https://www.bctransit.com/open-data">BC Transit open data</a>
+
+  <br><br>This site isn't affiliated with BC Transit, and neither them nor I make any representations about the accuracy of this data.
+
+  <br><br><a href="https://github.com/HyperbolicStudios/YYJ-Bus-Speed-Tracker">This project is open-sourced on GitHub.</a>
+</p>
+<br><br><br><br>
+</section>
+
+  <footer id="footer">
+
+<p>&copy; 2022 Mark Edwardson</p>
+  <a href="https://github.com/HyperbolicStudios/YYJ-Bus-Speed-Tracker"><i class="fa-brands fa-github fa-2xl"></i></a>
+
+  </footer>
+
+</body>
+
+<script src="static/js/script.js"></script>
