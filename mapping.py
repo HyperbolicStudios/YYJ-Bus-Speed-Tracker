@@ -81,4 +81,4 @@ def map(filename,toHTML=False,title=None):
         py.plot(fig,auto_open=True)
     return
 #map("50 Downtown.csv")
-map("output/snapshot.csv")
+map("output/snapshot.csv",toHTML=True)
