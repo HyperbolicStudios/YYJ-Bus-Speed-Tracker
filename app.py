@@ -4,7 +4,7 @@ import time
 from tracking import snapshot
 from mapping import map
 import boto3
-
+import os
 s3 = boto3.resource(
     service_name='s3',
     region_name='us-east-2',
