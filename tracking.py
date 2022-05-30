@@ -24,6 +24,27 @@ else:
     newDirectory = directory[:(directory.rfind("\\")+1)]
 os.chdir(newDirectory)
 
+import boto3
+import os
+from inspect import getsourcefile
+from os.path import abspath
+
+#set active directory to file location
+directory = abspath(getsourcefile(lambda:0))
+#check if system uses forward or backslashes for writing directories
+if(directory.rfind("/") != -1):
+    newDirectory = directory[:(directory.rfind("/")+1)]
+else:
+    newDirectory = directory[:(directory.rfind("\\")+1)]
+os.chdir(newDirectory)
+
+s3 = boto3.resource(
+    service_name='s3',
+    region_name='us-east-2',
+    aws_access_key_id='AKIAT3D7YDXK3TOCKF72',
+    aws_secret_access_key='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'
+)
+
 trips = pd.read_csv("google_transit/trips.csv")
 
 def get_feed(url="http://victoria.mapstrat.com/current/gtfrealtime_VehiclePositions.bin"):
@@ -55,8 +76,10 @@ def snapshot():
         #print(note)
         result = pd.DataFrame(data = {"Route":[header],"Time":[local_time],"Speed":[speed],"x":[x],"y":[y],"Notes":note},columns = ["Route","Time","Speed","x","y","Notes"])
         results = pd.concat([results, result], ignore_index = True, axis = 0)
+# Upload files to S3 bucket
 
     results.to_csv("output/snapshot.csv".format(local_time))
+    s3.Bucket('busspeedbucket').upload_file(Filename='output/snapshot.csv', Key='snapshot.csv')
     return
 
 async def track(bus_id):
@@ -94,5 +117,5 @@ async def track(bus_id):
 
     return("Done")
 #snapshot()
-#asyncio.run(track("9375"))
-get_feed()
+#asyncio.run
+snapshot()

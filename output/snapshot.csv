@@ -1,36 +1,130 @@
 ,Route,Time,Speed,x,y,Notes
-0,14 UVic Via Richmond,20:39:06,3.6,-123.4367904663086,48.45346450805664,Route: 14 UVic Via Richmond   Time: 20:39:06   Speed: 3.6 km/hr
-1,25 Maplewood,20:39:06,46.800000000000004,-123.4207534790039,48.43771743774414,Route: 25 Maplewood   Time: 20:39:06   Speed: 46.800000000000004 km/hr
-2,24 Admirals Walk Via Colville,20:39:06,7.2,-123.35346221923828,48.426265716552734,Route: 24 Admirals Walk Via Colville   Time: 20:39:06   Speed: 7.2 km/hr
-3,7N UVic - Cook St Village,20:39:06,25.2,-123.35891723632812,48.4185676574707,Route: 7N UVic - Cook St Village   Time: 20:39:06   Speed: 25.2 km/hr
-4,15 UVic - Foul Bay Exp,20:39:06,0.0,-123.30862426757812,48.4656867980957,Route: 15 UVic - Foul Bay Exp   Time: 20:39:06   Speed: 0.0 km/hr
-5,27 Gordon Head Via Shelbourne,20:39:06,18.0,-123.35385131835938,48.426002502441406,Route: 27 Gordon Head Via Shelbourne   Time: 20:39:06   Speed: 18.0 km/hr
-6,52 Bear Mountain Via Lagoon,20:39:06,0.0,-123.49298858642578,48.43428421020508,Route: 52 Bear Mountain Via Lagoon   Time: 20:39:06   Speed: 0.0 km/hr
-7,75 Downtown,20:39:06,39.6,-123.45339965820312,48.577911376953125,Route: 75 Downtown   Time: 20:39:06   Speed: 39.6 km/hr
-8,27 Downtown,20:39:06,10.8,-123.33309936523438,48.46104431152344,Route: 27 Downtown   Time: 20:39:06   Speed: 10.8 km/hr
-9,31 Royal Oak Exch Via Glanford,20:39:06,25.2,-123.36446380615234,48.42767333984375,Route: 31 Royal Oak Exch Via Glanford   Time: 20:39:06   Speed: 25.2 km/hr
-10,6A Royal Oak Exch Via Emily Carr,20:39:06,21.6,-123.3652572631836,48.424964904785156,Route: 6A Royal Oak Exch Via Emily Carr   Time: 20:39:06   Speed: 21.6 km/hr
-11,72 Downtown,20:39:06,0.0,-123.40031433105469,48.64909362792969,Route: 72 Downtown   Time: 20:39:06   Speed: 0.0 km/hr
-12,72 Swartz Bay Ferry Via Saanichton,20:39:06,32.4,-123.36517333984375,48.42494201660156,Route: 72 Swartz Bay Ferry Via Saanichton   Time: 20:39:06   Speed: 32.4 km/hr
-13,50 Downtown,20:39:06,0.0,-123.3758773803711,48.453155517578125,Route: 50 Downtown   Time: 20:39:06   Speed: 0.0 km/hr
-14,50 Langford,20:39:06,0.0,-123.36528778076172,48.435543060302734,Route: 50 Langford   Time: 20:39:06   Speed: 0.0 km/hr
-15,22 Vic General Via Hastings,20:39:06,25.2,-123.36467742919922,48.434471130371094,Route: 22 Vic General Via Hastings   Time: 20:39:06   Speed: 25.2 km/hr
-16,4 Downtown,20:39:06,36.0,-123.33686828613281,48.44432830810547,Route: 4 Downtown   Time: 20:39:06   Speed: 36.0 km/hr
-17,15 UVic - Foul Bay Exp,20:39:06,36.0,-123.39752960205078,48.43167495727539,Route: 15 UVic - Foul Bay Exp   Time: 20:39:06   Speed: 36.0 km/hr
-18,4 UVic Via Hillside,20:39:06,36.0,-123.36489868164062,48.43864440917969,Route: 4 UVic Via Hillside   Time: 20:39:06   Speed: 36.0 km/hr
-19,15 Esquimalt - Fort/Yates Exp,20:39:06,36.0,-123.37786102294922,48.428707122802734,Route: 15 Esquimalt - Fort/Yates Exp   Time: 20:39:06   Speed: 36.0 km/hr
-20,81 Swartz Bay Ferry,20:39:06,46.800000000000004,-123.41740417480469,48.66846466064453,Route: 81 Swartz Bay Ferry   Time: 20:39:06   Speed: 46.800000000000004 km/hr
-21,31 Downtown,20:39:06,39.6,-123.38997650146484,48.473934173583984,Route: 31 Downtown   Time: 20:39:06   Speed: 39.6 km/hr
-22,75 Saanichton Exch,20:39:06,0.0,-123.38749694824219,48.49893569946289,Route: 75 Saanichton Exch   Time: 20:39:06   Speed: 0.0 km/hr
-23,26 UVic Via McKenzie,20:39:06,21.6,-123.3708724975586,48.45576095581055,Route: 26 UVic Via McKenzie   Time: 20:39:06   Speed: 21.6 km/hr
-24,14 Vic General Via Craigflower,20:39:06,46.800000000000004,-123.3261489868164,48.44779968261719,Route: 14 Vic General Via Craigflower   Time: 20:39:06   Speed: 46.800000000000004 km/hr
-25,26 Dockyard Via Tillicum,20:39:06,32.4,-123.35235595703125,48.47181701660156,Route: 26 Dockyard Via Tillicum   Time: 20:39:06   Speed: 32.4 km/hr
-26,14 Vic General Via Craigflower,20:39:06,36.0,-123.43885040283203,48.45709991455078,Route: 14 Vic General Via Craigflower   Time: 20:39:06   Speed: 36.0 km/hr
-27,61 Langford Exch To 50 Downtown,20:39:06,46.800000000000004,-123.51820373535156,48.433353424072266,Route: 61 Langford Exch To 50 Downtown   Time: 20:39:06   Speed: 46.800000000000004 km/hr
-28,50 Langford To 61 Sooke,20:39:06,39.6,-123.50821685791016,48.44635772705078,Route: 50 Langford To 61 Sooke   Time: 20:39:06   Speed: 39.6 km/hr
-29,88 Sidney,20:39:06,50.4,-123.42292022705078,48.63527297973633,Route: 88 Sidney   Time: 20:39:06   Speed: 50.4 km/hr
-30,56 Langford Exch,20:39:06,39.6,-123.4908447265625,48.46719741821289,Route: 56 Langford Exch   Time: 20:39:06   Speed: 39.6 km/hr
-31,72 Downtown,20:39:06,75.60000000000001,-123.3870620727539,48.48176574707031,Route: 72 Downtown   Time: 20:39:06   Speed: 75.60000000000001 km/hr
-32,70 Downtown Via Hwy #17,20:39:06,36.0,-123.36497497558594,48.426292419433594,Route: 70 Downtown Via Hwy #17   Time: 20:39:06   Speed: 36.0 km/hr
-33,14 UVic Via Richmond,20:39:06,14.4,-123.32703399658203,48.453826904296875,Route: 14 UVic Via Richmond   Time: 20:39:06   Speed: 14.4 km/hr
-34,11 UVic Via Uplands,20:39:06,43.2,-123.40985870361328,48.450401306152344,Route: 11 UVic Via Uplands   Time: 20:39:06   Speed: 43.2 km/hr
+0,75 Downtown,10:34:21,25.2,-123.41907501220703,48.58751678466797,Route: 75 Downtown   Time: 10:34:21   Speed: 25.2 km/hr
+1,11 Tillicum Ctr Via Gorge,10:34:21,50.4,-123.29096984863281,48.46061706542969,Route: 11 Tillicum Ctr Via Gorge   Time: 10:34:21   Speed: 50.4 km/hr
+2,15 UVic - Foul Bay Exp,10:34:21,0.0,-123.32040405273438,48.44797897338867,Route: 15 UVic - Foul Bay Exp   Time: 10:34:21   Speed: 0.0 km/hr
+3,31 Royal Oak Exch Via Glanford,10:34:21,0.0,-123.36541748046875,48.435569763183594,Route: 31 Royal Oak Exch Via Glanford   Time: 10:34:21   Speed: 0.0 km/hr
+4,15 UVic - Foul Bay Exp,10:34:21,25.2,-123.36748504638672,48.42485046386719,Route: 15 UVic - Foul Bay Exp   Time: 10:34:21   Speed: 25.2 km/hr
+5,14 Vic General Via Craigflower,10:34:21,36.0,-123.32897186279297,48.43483352661133,Route: 14 Vic General Via Craigflower   Time: 10:34:21   Speed: 36.0 km/hr
+6,Route data not provided,10:34:21,0.0,-123.30805969238281,48.46612548828125,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+7,15 UVic - Foul Bay Exp,10:34:21,21.6,-123.42363739013672,48.429386138916016,Route: 15 UVic - Foul Bay Exp   Time: 10:34:21   Speed: 21.6 km/hr
+8,27 Downtown,10:34:21,10.8,-123.36236572265625,48.427818298339844,Route: 27 Downtown   Time: 10:34:21   Speed: 10.8 km/hr
+9,28 Downtown,10:34:21,14.4,-123.33332824707031,48.448177337646484,Route: 28 Downtown   Time: 10:34:21   Speed: 14.4 km/hr
+10,Route data not provided,10:34:21,0.0,-123.42776489257812,48.447425842285156,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+11,11 Tillicum Ctr Via Gorge,10:34:21,36.0,-123.37493133544922,48.44129943847656,Route: 11 Tillicum Ctr Via Gorge   Time: 10:34:21   Speed: 36.0 km/hr
+12,Route data not provided,10:34:21,18.0,-123.3663330078125,48.42067337036133,Route: Route data not provided   Time: 10:34:21   Speed: 18.0 km/hr
+13,60 Wishart,10:34:21,28.8,-123.51444244384766,48.4140625,Route: 60 Wishart   Time: 10:34:21   Speed: 28.8 km/hr
+14,Route data not provided,10:34:21,0.0,-123.5184097290039,48.44557189941406,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+15,Route data not provided,10:34:21,0.0,-123.38884735107422,48.499019622802734,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+16,Route data not provided,10:34:21,0.0,-123.39635467529297,48.454383850097656,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+17,21 Interurban - VI Tech Park,10:34:21,25.2,-123.38290405273438,48.448646545410156,Route: 21 Interurban - VI Tech Park   Time: 10:34:21   Speed: 25.2 km/hr
+18,Route data not provided,10:34:21,0.0,-123.30810546875,48.438106536865234,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+19,Route data not provided,10:34:21,50.4,-123.5194091796875,48.447261810302734,Route: Route data not provided   Time: 10:34:21   Speed: 50.4 km/hr
+20,63 Otter Point,10:34:21,32.4,-123.7201919555664,48.38210678100586,Route: 63 Otter Point   Time: 10:34:21   Speed: 32.4 km/hr
+21,70 Swartz Bay Ferry Via Hwy #17,10:34:21,75.60000000000001,-123.40547180175781,48.64665603637695,Route: 70 Swartz Bay Ferry Via Hwy #17   Time: 10:34:21   Speed: 75.60000000000001 km/hr
+22,4 UVic Via Hillside,10:34:21,14.4,-123.3656997680664,48.422119140625,Route: 4 UVic Via Hillside   Time: 10:34:21   Speed: 14.4 km/hr
+23,26 UVic Via McKenzie,10:34:21,25.2,-123.37550354003906,48.45270538330078,Route: 26 UVic Via McKenzie   Time: 10:34:21   Speed: 25.2 km/hr
+24,72 Swartz Bay Ferry Via Saanichton,10:34:21,21.6,-123.4214859008789,48.67133712768555,Route: 72 Swartz Bay Ferry Via Saanichton   Time: 10:34:21   Speed: 21.6 km/hr
+25,Route data not provided,10:34:21,0.0,-123.3115463256836,48.465885162353516,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+26,Route data not provided,10:34:21,0.0,-123.42839050292969,48.42755126953125,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+27,4 UVic Via Hillside,10:34:21,21.6,-123.34901428222656,48.44082260131836,Route: 4 UVic Via Hillside   Time: 10:34:21   Speed: 21.6 km/hr
+28,72 Downtown,10:34:21,72.0,-123.4209213256836,48.67903137207031,Route: 72 Downtown   Time: 10:34:21   Speed: 72.0 km/hr
+29,50 Langford,10:34:21,0.0,-123.43109130859375,48.4644889831543,Route: 50 Langford   Time: 10:34:21   Speed: 0.0 km/hr
+30,7 UVic Via Fairfield,10:34:21,32.4,-123.33560943603516,48.412452697753906,Route: 7 UVic Via Fairfield   Time: 10:34:21   Speed: 32.4 km/hr
+31,46 Westhills Exch,10:34:21,0.0,-123.50045776367188,48.4493522644043,Route: 46 Westhills Exch   Time: 10:34:21   Speed: 0.0 km/hr
+32,39 UVic Via Royal Oak,10:34:21,36.0,-123.44216918945312,48.46480178833008,Route: 39 UVic Via Royal Oak   Time: 10:34:21   Speed: 36.0 km/hr
+33,27 Downtown,10:34:21,36.0,-123.32168579101562,48.483028411865234,Route: 27 Downtown   Time: 10:34:21   Speed: 36.0 km/hr
+34,12 UVic Via Kenmore,10:34:21,10.8,-123.31273651123047,48.48046112060547,Route: 12 UVic Via Kenmore   Time: 10:34:21   Speed: 10.8 km/hr
+35,11 UVic Via Uplands,10:34:21,0.0,-123.33832550048828,48.42586898803711,Route: 11 UVic Via Uplands   Time: 10:34:21   Speed: 0.0 km/hr
+36,9 UVic - Gorge/Hillside,10:34:21,10.8,-123.41851806640625,48.49052047729492,Route: 9 UVic - Gorge/Hillside   Time: 10:34:21   Speed: 10.8 km/hr
+37,22 Hillside Ctr - Via Hastings,10:34:21,36.0,-123.333251953125,48.4461669921875,Route: 22 Hillside Ctr - Via Hastings   Time: 10:34:21   Speed: 36.0 km/hr
+38,15 Esquimalt - Fort/Yates Exp,10:34:21,39.6,-123.3178482055664,48.449684143066406,Route: 15 Esquimalt - Fort/Yates Exp   Time: 10:34:21   Speed: 39.6 km/hr
+39,75 Saanichton Exch,10:34:21,36.0,-123.38642883300781,48.487464904785156,Route: 75 Saanichton Exch   Time: 10:34:21   Speed: 36.0 km/hr
+40,6B Royal Oak Exch Via Chatterton,10:34:21,14.4,-123.36458587646484,48.42451095581055,Route: 6B Royal Oak Exch Via Chatterton   Time: 10:34:21   Speed: 14.4 km/hr
+41,22 Hillside Ctr - Via Hastings,10:34:21,36.0,-123.39490509033203,48.458221435546875,Route: 22 Hillside Ctr - Via Hastings   Time: 10:34:21   Speed: 36.0 km/hr
+42,Route data not provided,10:34:21,0.0,-123.30827331542969,48.4661750793457,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+43,25 Maplewood,10:34:21,39.6,-123.37763977050781,48.42851257324219,Route: 25 Maplewood   Time: 10:34:21   Speed: 39.6 km/hr
+44,30 Royal Oak Exch Via Carey,10:34:21,25.2,-123.39967346191406,48.4797477722168,Route: 30 Royal Oak Exch Via Carey   Time: 10:34:21   Speed: 25.2 km/hr
+45,32 Royal Oak Exch,10:34:21,46.800000000000004,-123.3675537109375,48.4995231628418,Route: 32 Royal Oak Exch   Time: 10:34:21   Speed: 46.800000000000004 km/hr
+46,11 Tillicum Ctr Via Gorge,10:34:21,0.0,-123.33623504638672,48.42685317993164,Route: 11 Tillicum Ctr Via Gorge   Time: 10:34:21   Speed: 0.0 km/hr
+47,2 South Oak Bay - Oak Bay Village,10:34:21,18.0,-123.3653335571289,48.42436981201172,Route: 2 South Oak Bay - Oak Bay Village   Time: 10:34:21   Speed: 18.0 km/hr
+48,6 Royal Oak Exch Via Royal Oak Ctr,10:34:21,46.800000000000004,-123.3608627319336,48.45174789428711,Route: 6 Royal Oak Exch Via Royal Oak Ctr   Time: 10:34:21   Speed: 46.800000000000004 km/hr
+49,Route data not provided,10:34:21,0.0,-123.30282592773438,48.42364501953125,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+50,Route data not provided,10:34:21,0.0,-123.39311981201172,48.49857711791992,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+51,39 UVic Via Royal Oak,10:34:21,0.0,-123.33171081542969,48.46857452392578,Route: 39 UVic Via Royal Oak   Time: 10:34:21   Speed: 0.0 km/hr
+52,Route data not provided,10:34:21,0.0,-123.33500671386719,48.467796325683594,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+53,15 Esquimalt - Fort/Yates Exp,10:34:21,0.0,-123.36061096191406,48.4259147644043,Route: 15 Esquimalt - Fort/Yates Exp   Time: 10:34:21   Speed: 0.0 km/hr
+54,27 Gordon Head Via Shelbourne,10:34:21,43.2,-123.33396911621094,48.430084228515625,Route: 27 Gordon Head Via Shelbourne   Time: 10:34:21   Speed: 43.2 km/hr
+55,11 UVic Via Uplands,10:34:21,21.6,-123.39307403564453,48.44535827636719,Route: 11 UVic Via Uplands   Time: 10:34:21   Speed: 21.6 km/hr
+56,31 Downtown,10:34:21,32.4,-123.37678527832031,48.454586029052734,Route: 31 Downtown   Time: 10:34:21   Speed: 32.4 km/hr
+57,Route data not provided,10:34:21,0.0,-123.43462371826172,48.466064453125,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+58,28 Majestic Via Shelbourne,10:34:21,32.4,-123.33264923095703,48.47003936767578,Route: 28 Majestic Via Shelbourne   Time: 10:34:21   Speed: 32.4 km/hr
+59,6 Downtown,10:34:21,18.0,-123.36177825927734,48.46643829345703,Route: 6 Downtown   Time: 10:34:21   Speed: 18.0 km/hr
+60,22 Vic General Via Hastings,10:34:21,0.0,-123.3668212890625,48.43814468383789,Route: 22 Vic General Via Hastings   Time: 10:34:21   Speed: 0.0 km/hr
+61,8 Interurban Via Finlayson,10:34:21,0.0,-123.37328338623047,48.44437026977539,Route: 8 Interurban Via Finlayson   Time: 10:34:21   Speed: 0.0 km/hr
+62,8 Oak Bay Via Finlayson,10:34:21,46.800000000000004,-123.41217041015625,48.480308532714844,Route: 8 Oak Bay Via Finlayson   Time: 10:34:21   Speed: 46.800000000000004 km/hr
+63,Route data not provided,10:34:21,14.4,-123.51914978027344,48.45527648925781,Route: Route data not provided   Time: 10:34:21   Speed: 14.4 km/hr
+64,15 Esquimalt - Fort/Yates Exp,10:34:21,7.2,-123.41673278808594,48.429954528808594,Route: 15 Esquimalt - Fort/Yates Exp   Time: 10:34:21   Speed: 7.2 km/hr
+65,61 Langford Exch To 50 Downtown,10:34:21,0.0,-123.68849182128906,48.387245178222656,Route: 61 Langford Exch To 50 Downtown   Time: 10:34:21   Speed: 0.0 km/hr
+66,50 Downtown,10:34:21,50.4,-123.4621353149414,48.45362091064453,Route: 50 Downtown   Time: 10:34:21   Speed: 50.4 km/hr
+67,26 UVic Via McKenzie,10:34:21,28.8,-123.40965270996094,48.4299201965332,Route: 26 UVic Via McKenzie   Time: 10:34:21   Speed: 28.8 km/hr
+68,Route data not provided,10:34:21,0.0,-123.36894226074219,48.41914749145508,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+69,72 Swartz Bay Ferry Via Saanichton,10:34:21,0.0,-123.36443328857422,48.427757263183594,Route: 72 Swartz Bay Ferry Via Saanichton   Time: 10:34:21   Speed: 0.0 km/hr
+70,50 Langford,10:34:21,36.0,-123.50948333740234,48.44438934326172,Route: 50 Langford   Time: 10:34:21   Speed: 36.0 km/hr
+71,4 Downtown,10:34:21,39.6,-123.31520080566406,48.456748962402344,Route: 4 Downtown   Time: 10:34:21   Speed: 39.6 km/hr
+72,Route data not provided,10:34:21,0.0,-123.3082046508789,48.465946197509766,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+73,61 Sooke,10:34:21,32.4,-123.51019287109375,48.44317626953125,Route: 61 Sooke   Time: 10:34:21   Speed: 32.4 km/hr
+74,14 Vic General Via Craigflower,10:34:21,43.2,-123.42803192138672,48.45255661010742,Route: 14 Vic General Via Craigflower   Time: 10:34:21   Speed: 43.2 km/hr
+75,26 Dockyard Via Tillicum,10:34:21,14.4,-123.40208435058594,48.442344665527344,Route: 26 Dockyard Via Tillicum   Time: 10:34:21   Speed: 14.4 km/hr
+76,Route data not provided,10:34:21,0.0,-123.30864715576172,48.46568298339844,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+77,72 Downtown,10:34:21,10.8,-123.36466979980469,48.4322624206543,Route: 72 Downtown   Time: 10:34:21   Speed: 10.8 km/hr
+78,Route data not provided,10:34:21,0.0,-123.5059814453125,48.445274353027344,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+79,Route data not provided,10:34:21,0.0,-123.43487548828125,48.466182708740234,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+80,Route data not provided,10:34:21,0.0,-123.30831909179688,48.466064453125,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+81,Route data not provided,10:34:21,0.0,-123.41849517822266,48.490325927734375,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+82,Route data not provided,10:34:21,0.0,-123.36894989013672,48.419769287109375,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+83,81 Swartz Bay Ferry,10:34:21,25.2,-123.4101791381836,48.662654876708984,Route: 81 Swartz Bay Ferry   Time: 10:34:21   Speed: 25.2 km/hr
+84,30 Downtown,10:34:21,18.0,-123.38981628417969,48.49660110473633,Route: 30 Downtown   Time: 10:34:21   Speed: 18.0 km/hr
+85,46 Dockyard,10:34:21,0.0,-123.50486755371094,48.450233459472656,Route: 46 Dockyard   Time: 10:34:21   Speed: 0.0 km/hr
+86,14 Vic General Via Craigflower,10:34:21,32.4,-123.37057495117188,48.42851638793945,Route: 14 Vic General Via Craigflower   Time: 10:34:21   Speed: 32.4 km/hr
+87,6A Royal Oak Exch Via Emily Carr,10:34:21,50.4,-123.37518310546875,48.49763488769531,Route: 6A Royal Oak Exch Via Emily Carr   Time: 10:34:21   Speed: 50.4 km/hr
+88,14 UVic Via Richmond,10:34:21,21.6,-123.41985321044922,48.44902038574219,Route: 14 UVic Via Richmond   Time: 10:34:21   Speed: 21.6 km/hr
+89,6A Downtown Via Emily Carr,10:34:21,25.2,-123.35926055908203,48.439247131347656,Route: 6A Downtown Via Emily Carr   Time: 10:34:21   Speed: 25.2 km/hr
+90,25 Admirals Walk Via Munro,10:34:21,46.800000000000004,-123.35025787353516,48.4627799987793,Route: 25 Admirals Walk Via Munro   Time: 10:34:21   Speed: 46.800000000000004 km/hr
+91,87 Sidney,10:34:21,46.800000000000004,-123.42230987548828,48.635250091552734,Route: 87 Sidney   Time: 10:34:21   Speed: 46.800000000000004 km/hr
+92,52 Colwood Exch Via Lagoon,10:34:21,3.6,-123.50270080566406,48.44609069824219,Route: 52 Colwood Exch Via Lagoon   Time: 10:34:21   Speed: 3.6 km/hr
+93,Route data not provided,10:34:21,0.0,-123.46651458740234,48.44511032104492,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+94,14 UVic Via Richmond,10:34:21,21.6,-123.32630157470703,48.44705581665039,Route: 14 UVic Via Richmond   Time: 10:34:21   Speed: 21.6 km/hr
+95,50 Langford,10:34:21,28.8,-123.36471557617188,48.42694091796875,Route: 50 Langford   Time: 10:34:21   Speed: 28.8 km/hr
+96,Route data not provided,10:34:21,0.0,-123.30856323242188,48.46603012084961,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+97,Route data not provided,10:34:21,0.0,-123.43504333496094,48.46626663208008,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+98,53 Langford Exch Via Atkins,10:34:21,28.8,-123.46875,48.451473236083984,Route: 53 Langford Exch Via Atkins   Time: 10:34:21   Speed: 28.8 km/hr
+99,Route data not provided,10:34:21,0.0,-123.38880920410156,48.49917984008789,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+100,Route data not provided,10:34:21,0.0,-123.50466918945312,48.445533752441406,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+101,87 Dean Park Via Airport To Saanichton,10:34:21,39.6,-123.43255615234375,48.63865661621094,Route: 87 Dean Park Via Airport To Saanichton   Time: 10:34:21   Speed: 39.6 km/hr
+102,55 Happy Valley,10:34:21,54.0,-123.53587341308594,48.372135162353516,Route: 55 Happy Valley   Time: 10:34:21   Speed: 54.0 km/hr
+103,3 James Bay via Quimper Loop,10:34:21,32.4,-123.36555480957031,48.42414855957031,Route: 3 James Bay via Quimper Loop   Time: 10:34:21   Speed: 32.4 km/hr
+104,3 Royal Jubilee - Cook St Vlg/Quimper,10:34:21,18.0,-123.32353210449219,48.4089241027832,Route: 3 Royal Jubilee - Cook St Vlg/Quimper   Time: 10:34:21   Speed: 18.0 km/hr
+105,Route data not provided,10:34:21,3.6,-123.40203094482422,48.64768981933594,Route: Route data not provided   Time: 10:34:21   Speed: 3.6 km/hr
+106,10 Royal Jubilee Via Vic West,10:34:21,14.4,-123.36974334716797,48.42495346069336,Route: 10 Royal Jubilee Via Vic West   Time: 10:34:21   Speed: 14.4 km/hr
+107,26 Dockyard Via Tillicum,10:34:21,32.4,-123.36067199707031,48.470550537109375,Route: 26 Dockyard Via Tillicum   Time: 10:34:21   Speed: 32.4 km/hr
+108,70 Downtown Via Hwy #17,10:34:21,43.2,-123.37796020507812,48.45713424682617,Route: 70 Downtown Via Hwy #17   Time: 10:34:21   Speed: 43.2 km/hr
+109,72 Swartz Bay Ferry Via Saanichton,10:34:21,82.8,-123.3934326171875,48.55669021606445,Route: 72 Swartz Bay Ferry Via Saanichton   Time: 10:34:21   Speed: 82.8 km/hr
+110,50 Downtown,10:34:21,14.4,-123.3724365234375,48.44760513305664,Route: 50 Downtown   Time: 10:34:21   Speed: 14.4 km/hr
+111,4 Downtown,10:34:21,36.0,-123.36473083496094,48.42734146118164,Route: 4 Downtown   Time: 10:34:21   Speed: 36.0 km/hr
+112,72 Downtown,10:34:21,3.6,-123.40361022949219,48.573123931884766,Route: 72 Downtown   Time: 10:34:21   Speed: 3.6 km/hr
+113,Route data not provided,10:34:21,0.0,-123.36878967285156,48.41914367675781,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+114,5 Willows - Oak Bay Village,10:34:21,28.8,-123.37340545654297,48.41839599609375,Route: 5 Willows - Oak Bay Village   Time: 10:34:21   Speed: 28.8 km/hr
+115,21 Downtown To 7 UVic,10:34:21,25.2,-123.39178466796875,48.453041076660156,Route: 21 Downtown To 7 UVic   Time: 10:34:21   Speed: 25.2 km/hr
+116,28 Majestic Via Shelbourne,10:34:21,3.6,-123.36322784423828,48.421173095703125,Route: 28 Majestic Via Shelbourne   Time: 10:34:21   Speed: 3.6 km/hr
+117,39 Westhills Exch,10:34:21,25.2,-123.41297912597656,48.493560791015625,Route: 39 Westhills Exch   Time: 10:34:21   Speed: 25.2 km/hr
+118,52 Bear Mountain Via Lagoon,10:34:21,0.0,-123.50302124023438,48.44544219970703,Route: 52 Bear Mountain Via Lagoon   Time: 10:34:21   Speed: 0.0 km/hr
+119,7 Downtown - To 21 Interurban,10:34:21,0.0,-123.30821990966797,48.4662971496582,Route: 7 Downtown - To 21 Interurban   Time: 10:34:21   Speed: 0.0 km/hr
+120,7 Downtown - To 21 Interurban,10:34:21,18.0,-123.3610610961914,48.42029571533203,Route: 7 Downtown - To 21 Interurban   Time: 10:34:21   Speed: 18.0 km/hr
+121,3 James Bay - Via Linden,10:34:21,0.0,-123.3276596069336,48.4337158203125,Route: 3 James Bay - Via Linden   Time: 10:34:21   Speed: 0.0 km/hr
+122,11 UVic Via Uplands,10:34:21,39.6,-123.28617095947266,48.46134948730469,Route: 11 UVic Via Uplands   Time: 10:34:21   Speed: 39.6 km/hr
+123,9 Royal Oak Exch - Hillside/Gorge,10:34:21,39.6,-123.31436920166016,48.45485305786133,Route: 9 Royal Oak Exch - Hillside/Gorge   Time: 10:34:21   Speed: 39.6 km/hr
+124,Route data not provided,10:34:21,28.8,-123.39651489257812,48.45220947265625,Route: Route data not provided   Time: 10:34:21   Speed: 28.8 km/hr
+125,Route data not provided,10:34:21,0.0,-123.3639907836914,48.421653747558594,Route: Route data not provided   Time: 10:34:21   Speed: 0.0 km/hr
+126,2 James Bay - Fisherman's Wharf,10:34:21,43.2,-123.31227111816406,48.42198944091797,Route: 2 James Bay - Fisherman's Wharf   Time: 10:34:21   Speed: 43.2 km/hr
+127,14 UVic Via Richmond,10:34:21,0.0,-123.37039947509766,48.42708969116211,Route: 14 UVic Via Richmond   Time: 10:34:21   Speed: 0.0 km/hr
+128,56 Langford Exch,10:34:21,28.8,-123.4905776977539,48.4705696105957,Route: 56 Langford Exch   Time: 10:34:21   Speed: 28.8 km/hr
