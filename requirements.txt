@@ -7,3 +7,4 @@ plotly==5.6.0
 protobuf==4.21.1
 pytz==2021.3
 requests==2.24.0
+gunicorn
