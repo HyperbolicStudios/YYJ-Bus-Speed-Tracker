@@ -17,14 +17,17 @@ body {
 h1 {
   margin-left: 3%;
 }
+
 h2 {
   font-size: 20px;
   margin-bottom: 4px;
-   font-weight: bold;
+  font-weight: bold;
 }
 
 a {
-  text-decoration: none;}
+  text-decoration: none;
+  color: purple
+}
 
 .align-right {
   text-align: right;
@@ -34,9 +37,8 @@ a {
   text-align: center;
 }
 
-
 #topHeader {
-  height:11vh;
+  height: 11vh;
   width: 100%;
   background-color: black;
   display: grid;
@@ -44,7 +46,7 @@ a {
   grid-template-rows: 100%;
 }
 
-#topHeader > h3 {
+#topHeader>h3 {
   font-family: 'Lato', sans-serif;
   color: white;
   height: 5vh;
@@ -82,6 +84,7 @@ a {
 .menu-text:hover {
   color: white;
 }
+
 #closeButton {
   font-size: 30px;
   float: right;
@@ -101,6 +104,10 @@ p {
   color: black;
 }
 
+p > a {
+  color: purple;
+}
+
 #center {
   background-color: #dedede;
   hover: cursor;
@@ -118,21 +125,20 @@ p {
 }
 
 #footer {
-display: grid;
-grid-template-columns: 1fr;
-padding: 20px 0px 20px 0px;
-
-grid-template-rows: 1fr 1fr;
-height: 150px;
-background-color: black;
-align-items: center;
-text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 20px 0px 20px 0px;
+  grid-template-rows: 1fr 1fr;
+  height: 150px;
+  background-color: black;
+  align-items: center;
+  text-align: center;
 }
 
-#footer > p,a {
+#footer>p, a {
   color: white;
 }
 
-#footer > a > * {
+#footer>a>* {
   color: white;
 }

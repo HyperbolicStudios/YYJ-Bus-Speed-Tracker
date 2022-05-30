@@ -23,7 +23,9 @@ os.chdir(newDirectory)
 
 mapbox_access_token = "pk.eyJ1IjoibWFya2Vkd2FyZHNvbiIsImEiOiJjbDNjanIwMTYwMWZ1M2JxdjlpM2FoZG45In0.yHtIIsPy7ch-Qv_q45jqNQ"
 
-def map(filename,toHTML=False):
+def map(filename,toHTML=False,title=None):
+    if title is None:
+        title=filename[filename.find("/")+1:filename.find(".csv")]
     data = pd.read_csv(filename)
 
     fig = go.Figure(go.Scattermapbox(
@@ -41,7 +43,7 @@ def map(filename,toHTML=False):
         ))
 
     fig.update_layout(
-        title = filename.replace(".csv",""),
+        title = title,
         title_x = 0.5,
         hovermode='closest',
         mapbox=dict(
