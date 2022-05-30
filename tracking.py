@@ -41,8 +41,8 @@ os.chdir(newDirectory)
 s3 = boto3.resource(
     service_name='s3',
     region_name='us-east-2',
-    aws_access_key_id='AKIAT3D7YDXK3TOCKF72',
-    aws_secret_access_key='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'
+    aws_access_key_id=os.environ['aws_access_key_id'],
+    aws_secret_access_key=os.environ['aws_secret_access_key']
 )
 
 trips = pd.read_csv("google_transit/trips.csv")
