@@ -4,6 +4,7 @@ import time
 from tracking import snapshot
 from mapping import map
 
+
 # create app
 app = Flask(__name__)
 

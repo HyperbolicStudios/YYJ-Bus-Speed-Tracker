@@ -41,7 +41,8 @@ def map(filename,toHTML=False):
         ))
 
     fig.update_layout(
-        title="Bus Speeds",
+        title = filename.replace(".csv",""),
+        title_x = 0.5,
         hovermode='closest',
         mapbox=dict(
             accesstoken=mapbox_access_token,
