@@ -74,7 +74,7 @@ def map(filename,toHTML=False,title=None):
     if toHTML:
         pio.write_html(fig, file='templates/map.html', auto_open=False)
         # Upload files to S3 bucket
-        s3.Bucket('busspeedbucket').upload_file(Key='templates/map.html', Filename='map.html')
+        s3.Bucket('busspeedbucket').upload_file(Key='map.html', Filename='templates/map.html')
 
 
     else:
