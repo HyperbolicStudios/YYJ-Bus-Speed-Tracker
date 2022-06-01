@@ -30,6 +30,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 def job1():
     snapshot()
     map("output/snapshot.csv",toHTML="True",title="YYJ Bus Speeds")
+    time.sleep(2)
     print('Job 1 executed')
     time.sleep(10)
 
