@@ -4,7 +4,10 @@ import time
 from tracking import snapshot
 from mapping import map
 import boto3
-import os
+import
+
+snapshot()
+
 s3 = boto3.resource(
     service_name='s3',
     region_name='us-east-2',
@@ -28,7 +31,6 @@ def job1():
     snapshot()
     map("output/snapshot.csv",toHTML="True",title="YYJ Bus Speeds")
     print('Job 1 executed')
-    time.sleep(10)
 
 @app.route("/plotly")
 def plotly():
