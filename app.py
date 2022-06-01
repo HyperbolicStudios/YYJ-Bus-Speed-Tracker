@@ -6,7 +6,7 @@ from mapping import map
 import boto3
 import os
 
-snapshot()
+#snapshot()
 
 s3 = boto3.resource(
     service_name='s3',
