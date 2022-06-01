@@ -4,7 +4,7 @@ import time
 from tracking import snapshot
 from mapping import map
 import boto3
-import
+import os
 
 snapshot()
 
