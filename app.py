@@ -34,7 +34,7 @@ def job1():
 
 @app.route("/plotly")
 def plotly():
-    s3.Bucket('busspeedbucket').download_file(Key='map.html', Filename='map.html')
+    s3.Bucket('busspeedbucket').download_file(Key='map.html', Filename='templates/map.html')
     return render_template("map.html")
 
 @app.route("/")
