@@ -12,9 +12,11 @@ s3 = boto3.resource(
     aws_secret_access_key=os.environ['aws_secret_access_key']
 )
 
+snapshot()
+
 # create app
 app = Flask(__name__)
-print("FLASK APP STARTING UP.")
+print("FLASK APP STARTING UP. SNAPSHOT TAKEN.")
 # initialize scheduler
 scheduler = APScheduler()
 scheduler.api_enabled = True
@@ -42,4 +44,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(use_reloader=False,debug=False)
+    app.run()
