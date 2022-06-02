@@ -5,9 +5,6 @@ from tracking import snapshot
 from mapping import map
 import boto3
 import os
-
-#snapshot()
-
 s3 = boto3.resource(
     service_name='s3',
     region_name='us-east-2',
@@ -28,15 +25,14 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 # interval example
 @scheduler.task('interval', id='do_job_1', seconds=20, misfire_grace_time=900)
 def job1():
-    print("Starting job1")
-    #snapshot()
-    #map("output/snapshot.csv",toHTML="True",title="YYJ Bus Speeds")
-
-
+    snapshot()
+    map("output/snapshot.csv",toHTML="True",title="YYJ Bus Speeds")
+    print('Job 1 executed')
+    time.sleep(10)
 
 @app.route("/plotly")
 def plotly():
-    s3.Bucket('busspeedbucket').download_file(Key='map.html', Filename='templates/map.html')
+    s3.Bucket('busspeedbucket').download_file(Key='map.html', Filename='map.html')
     return render_template("map.html")
 
 @app.route("/")
@@ -46,4 +42,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(use_reloader=False)
