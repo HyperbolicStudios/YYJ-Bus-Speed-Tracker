@@ -14,7 +14,7 @@ s3 = boto3.resource(
 
 # create app
 app = Flask(__name__)
-
+print("FLASK APP STARTING UP.")
 # initialize scheduler
 scheduler = APScheduler()
 scheduler.api_enabled = True
