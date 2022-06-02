@@ -13,6 +13,7 @@ s3 = boto3.resource(
 )
 
 snapshot()
+map("output/snapshot.csv",toHTML="True",title="YYJ Bus Speeds")
 
 # create app
 app = Flask(__name__)
