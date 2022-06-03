@@ -133,4 +133,3 @@ def audit_feed(minutes = 3):
     print(results)
     print(np.mean(results))
     return
-audit_feed(1)
