@@ -19,7 +19,7 @@ scheduler.start()
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # interval example
-@scheduler.task('interval', id='do_job_1', seconds=20, misfire_grace_time=900)
+@scheduler.task('interval', id='do_job_1', seconds=5, misfire_grace_time=900)
 def job1():
     map(snapshot(),title="YYJ Bus Speeds")
     print('Job 1 executed')

@@ -79,7 +79,7 @@ def snapshot():
 # Upload files to S3 bucket
 
     return(results)
-    
+
 async def track(bus_id):
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     start_time = datetime.datetime.now()
@@ -114,6 +114,23 @@ async def track(bus_id):
         await asyncio.sleep(10)
 
     return("Done")
-#snapshot()
-#asyncio.run
-snapshot()
+
+def audit_feed(minutes = 3):
+    results = []
+    start_time = datetime.datetime.now()
+    old_feed = None
+    i = 0
+    while(i<3*60/2.5):
+        feed = get_feed()
+        if feed != old_feed:
+            old_feed = feed
+            delta = (datetime.datetime.now()-start_time).total_seconds()
+            print("Got new feed. Delta: {}".format(delta))
+            results.append(delta)
+            start_time = datetime.datetime.now()
+        i=+1
+        time.sleep(2.5)
+    print(results)
+    print(np.mean(results))
+    return
+audit_feed(1)
