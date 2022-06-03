@@ -21,8 +21,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 # interval example
 @scheduler.task('interval', id='do_job_1', seconds=20, misfire_grace_time=900)
 def job1():
-    snapshot()
-    map("output/snapshot.csv",toHTML="True",title="YYJ Bus Speeds")
+    map(snapshot(),title="YYJ Bus Speeds")
     print('Job 1 executed')
     time.sleep(10)
 
