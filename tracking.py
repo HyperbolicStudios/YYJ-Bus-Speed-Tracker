@@ -78,10 +78,8 @@ def snapshot():
         results = pd.concat([results, result], ignore_index = True, axis = 0)
 # Upload files to S3 bucket
 
-    results.to_csv("output/snapshot.csv".format(local_time))
-    s3.Bucket('busspeedbucket').upload_file(Filename='output/snapshot.csv', Key='snapshot.csv')
-    return
-
+    return(results)
+    
 async def track(bus_id):
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     start_time = datetime.datetime.now()

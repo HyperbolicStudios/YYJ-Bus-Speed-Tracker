@@ -8,18 +8,11 @@ import os
 from inspect import getsourcefile
 from os.path import abspath
 import traceback
-import boto3
+
 username = 'markedwardson' # your plotly username
 api_key = 'WIAjN7QL8J93lT9a296Q' # your plotly api key - go to profile > settings > regenerate key
 chart_studio.tools.set_credentials_file(username=username, api_key=api_key)
-
-s3 = boto3.resource(
-    service_name='s3',
-    region_name='us-east-2',
-    aws_access_key_id=os.environ['aws_access_key_id'],
-    aws_secret_access_key=os.environ['aws_secret_access_key']
-)
-
+mapbox_access_token = "pk.eyJ1IjoibWFya2Vkd2FyZHNvbiIsImEiOiJjbDNjanIwMTYwMWZ1M2JxdjlpM2FoZG45In0.yHtIIsPy7ch-Qv_q45jqNQ"
 
 #set active directory to file location
 directory = abspath(getsourcefile(lambda:0))
@@ -30,15 +23,7 @@ else:
     newDirectory = directory[:(directory.rfind("\\")+1)]
 os.chdir(newDirectory)
 
-mapbox_access_token = "pk.eyJ1IjoibWFya2Vkd2FyZHNvbiIsImEiOiJjbDNjanIwMTYwMWZ1M2JxdjlpM2FoZG45In0.yHtIIsPy7ch-Qv_q45jqNQ"
-
-def map(filename,toHTML=False,title=None):
-    if title is None:
-        title=filename[filename.find("/")+1:filename.find(".csv")]
-
-    s3.Bucket('busspeedbucket').download_file(Key='snapshot.csv', Filename='output/snapshot.csv')
-
-    data = pd.read_csv(filename)
+def map(data,title="Chart"):
 
     fig = go.Figure(go.Scattermapbox(
             lat=data["y"],
@@ -71,14 +56,5 @@ def map(filename,toHTML=False,title=None):
     )
 
     #x = py.plot(fig,auto_open=True)
-    if toHTML:
-        pio.write_html(fig, file='templates/map.html', auto_open=False)
-        # Upload files to S3 bucket
-        s3.Bucket('busspeedbucket').upload_file(Key='map.html', Filename='templates/map.html')
-
-
-    else:
-        py.plot(fig,auto_open=True)
+    pio.write_html(fig, file='templates/map.html', auto_open=False)
     return
-#map("50 Downtown.csv")
-map("output/snapshot.csv",toHTML=True)
