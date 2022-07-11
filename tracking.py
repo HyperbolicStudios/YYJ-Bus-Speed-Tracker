@@ -45,7 +45,7 @@ s3 = boto3.resource(
     aws_secret_access_key=os.environ['aws_secret_access_key']
 )
 
-trips = pd.read_csv("google_transit/trips.csv")
+#trips = pd.read_csv("google_transit/trips.csv")
 
 def get_feed(url="http://victoria.mapstrat.com/current/gtfrealtime_VehiclePositions.bin"):
 
@@ -53,6 +53,24 @@ def get_feed(url="http://victoria.mapstrat.com/current/gtfrealtime_VehiclePositi
     response = requests.get(url)
     feed.ParseFromString(response.content)
     return(feed)
+
+def update_static(url='http://victoria.mapstrat.com/current/google_transit.zip', extract_to='google_transit'):
+
+    from urllib.request import urlopen
+    from io import BytesIO
+    from zipfile import ZipFile
+    import shutil
+    shutil.rmtree('google_transit')
+    http_response = urlopen(url)
+    zipfile = ZipFile(BytesIO(http_response.read()))
+    zipfile.extractall(path=extract_to)
+
+    for filename in os.listdir('google_transit'):
+        print(filename)
+        newname = filename[:-3]+'csv'
+        os.rename('google_transit/'+filename,'google_transit/'+newname)
+        time.sleep(.5)
+    return
 
 def get_trip_data(id): #searches the csv file and returns trip data (route #, direction, etc.)
     return(trips.loc[trips['trip_id']==int(id)])
@@ -79,7 +97,7 @@ def snapshot():
 # Upload files to S3 bucket
 
     return(results)
-
+#snapshot()
 async def track(bus_id):
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     start_time = datetime.datetime.now()
@@ -98,6 +116,7 @@ async def track(bus_id):
                     header = trip.trip_headsign.values[0]
                 except:
                     header = "Route data not provided"
+                    traceback.print_exc()
 
                 utc_date = datetime.datetime.utcfromtimestamp(feed.header.timestamp)
                 local_time = pytz.utc.localize(utc_date).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S")
@@ -115,7 +134,7 @@ async def track(bus_id):
 
     return("Done")
 
-def audit_feed(minutes = 3):
+def audit_feed_update_time(minutes = 3):
     results = []
     start_time = datetime.datetime.now()
     old_feed = None
@@ -133,3 +152,4 @@ def audit_feed(minutes = 3):
     print(results)
     print(np.mean(results))
     return
+snapshot()
