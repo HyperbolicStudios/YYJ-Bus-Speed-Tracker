@@ -84,8 +84,7 @@ def snapshot():
             header = trip.trip_headsign.values[0]
         except:
             header = "Route data not provided"
-            traceback.print_exc()
-            break
+    
 
         utc_date = datetime.datetime.utcfromtimestamp(feed.header.timestamp)
         local_time = pytz.utc.localize(utc_date).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S")
