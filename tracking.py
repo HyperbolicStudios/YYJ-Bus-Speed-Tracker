@@ -45,7 +45,7 @@ s3 = boto3.resource(
     aws_secret_access_key=os.environ['aws_secret_access_key']
 )
 
-#trips = pd.read_csv("google_transit/trips.csv")
+trips = pd.read_csv("google_transit/trips.csv")
 
 def get_feed(url="http://victoria.mapstrat.com/current/gtfrealtime_VehiclePositions.bin"):
 
@@ -84,6 +84,8 @@ def snapshot():
             header = trip.trip_headsign.values[0]
         except:
             header = "Route data not provided"
+            traceback.print_exc()
+            break
 
         utc_date = datetime.datetime.utcfromtimestamp(feed.header.timestamp)
         local_time = pytz.utc.localize(utc_date).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S")
@@ -97,7 +99,7 @@ def snapshot():
 # Upload files to S3 bucket
 
     return(results)
-#snapshot()
+snapshot()
 async def track(bus_id):
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     start_time = datetime.datetime.now()
@@ -152,4 +154,3 @@ def audit_feed_update_time(minutes = 3):
     print(results)
     print(np.mean(results))
     return
-snapshot()
