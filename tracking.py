@@ -12,23 +12,14 @@ from os.path import abspath
 import datetime
 import traceback
 import asyncio
+from urllib.request import urlopen
+from io import BytesIO
+from zipfile import ZipFile
+import shutil
+import boto3
 
 from mapping import map
 #from graphing import graph_variables
-#set active directory to file location
-directory = abspath(getsourcefile(lambda:0))
-#check if system uses forward or backslashes for writing directories
-if(directory.rfind("/") != -1):
-    newDirectory = directory[:(directory.rfind("/")+1)]
-else:
-    newDirectory = directory[:(directory.rfind("\\")+1)]
-os.chdir(newDirectory)
-
-import boto3
-import os
-from inspect import getsourcefile
-from os.path import abspath
-
 #set active directory to file location
 directory = abspath(getsourcefile(lambda:0))
 #check if system uses forward or backslashes for writing directories
@@ -56,10 +47,6 @@ def get_feed(url="http://victoria.mapstrat.com/current/gtfrealtime_VehiclePositi
 
 def update_static(url='http://victoria.mapstrat.com/current/google_transit.zip', extract_to='google_transit'):
 
-    from urllib.request import urlopen
-    from io import BytesIO
-    from zipfile import ZipFile
-    import shutil
     shutil.rmtree('google_transit')
     http_response = urlopen(url)
     zipfile = ZipFile(BytesIO(http_response.read()))
@@ -84,7 +71,7 @@ def snapshot():
             header = trip.trip_headsign.values[0]
         except:
             header = "Route data not provided"
-    
+
 
         utc_date = datetime.datetime.utcfromtimestamp(feed.header.timestamp)
         local_time = pytz.utc.localize(utc_date).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S")
@@ -98,7 +85,7 @@ def snapshot():
 # Upload files to S3 bucket
 
     return(results)
-snapshot()
+
 async def track(bus_id):
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     start_time = datetime.datetime.now()
@@ -153,3 +140,14 @@ def audit_feed_update_time(minutes = 3):
     print(results)
     print(np.mean(results))
     return
+
+def audit_static_data():
+    feed = get_feed()
+    for entity in feed.entity:
+        try:
+            trip = get_trip_data(entity.vehicle.trip.trip_id)
+            header = trip.trip_headsign.values[0]
+            return(1)
+        except:
+            header = "Route data not provided"
+    return(0)

@@ -102,6 +102,7 @@ a {
 
 p {
   color: black;
+  margin-top: 8px;
 }
 
 p > a {
