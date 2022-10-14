@@ -108,7 +108,7 @@ async def track(bus_id):
 
                 utc_date = datetime.datetime.utcfromtimestamp(feed.header.timestamp)
                 local_time = pytz.utc.localize(utc_date).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S")
-                speed = int(entity.vehicle.position.speed)*3.6 #converts to km/hr
+                speed = round(int(entity.vehicle.position.speed)*3.6,1) #converts to km/hr
                 x = entity.vehicle.position.longitude
                 y = entity.vehicle.position.latitude
                 note = "Route: {}   Time: {}   Speed: {} km/hr".format(header,local_time,speed)
