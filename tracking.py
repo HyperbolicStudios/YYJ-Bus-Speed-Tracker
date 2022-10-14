@@ -151,4 +151,3 @@ def audit_static_data():
         except:
             header = "Route data not provided"
     return(0)
-update_static()
