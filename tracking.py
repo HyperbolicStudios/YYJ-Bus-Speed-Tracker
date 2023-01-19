@@ -82,7 +82,7 @@ def snapshot():
         
 
 
-        if header != "Route data not provided":
+        if header != "Route data not provided" and mycol.count_documents({"Time": feed.header.timestamp}) == 0:
             new_mongo_row = {
                 "Time": feed.header.timestamp,
                 "Trip ID": entity.vehicle.trip.trip_id,
