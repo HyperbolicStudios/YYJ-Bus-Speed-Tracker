@@ -1,24 +1,28 @@
 import time
+import datetime
+
 import pytz
 from pytz import timezone
 
-import pandas as pd
-import numpy as np
-from google.transit import gtfs_realtime_pb2
 import requests
 import os
 from inspect import getsourcefile
 from os.path import abspath
-import datetime
+
 from urllib.request import urlopen
 from io import BytesIO
 from zipfile import ZipFile
 import shutil
 
-from mapping import map
+
+import pandas as pd
+import numpy as np
 
 import pymongo
 import dns.resolver
+from google.transit import gtfs_realtime_pb2
+
+from mapping import map
 
 dns.resolver.default_resolver=dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers=['8.8.8.8']
@@ -36,7 +40,6 @@ if(directory.rfind("/") != -1):
 else:
     newDirectory = directory[:(directory.rfind("\\")+1)]
 os.chdir(newDirectory)
-
 
 
 trips = pd.read_csv("google_transit/trips.csv")
@@ -71,6 +74,7 @@ def get_trip_data(id): #searches the csv file and returns trip data (route #, di
 def snapshot():
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     feed = get_feed()
+    i = 0
     for entity in feed.entity:
 
         try:
@@ -83,6 +87,7 @@ def snapshot():
 
 
         if header != "Route data not provided" and mycol.count_documents({"Time": feed.header.timestamp}) == 0:
+            i = i+1
             new_mongo_row = {
                 "Time": feed.header.timestamp,
                 "Trip ID": entity.vehicle.trip.trip_id,
@@ -93,7 +98,7 @@ def snapshot():
             }
 
             mycol.insert_one(new_mongo_row)
-            print("Logged to Mongo.")
+            print("Logged {} documents to Mongo.".format(i))
 
         utc_date = datetime.datetime.utcfromtimestamp(feed.header.timestamp)
         local_time = pytz.utc.localize(utc_date).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S")
