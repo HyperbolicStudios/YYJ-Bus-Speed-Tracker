@@ -93,6 +93,7 @@ def snapshot():
             }
 
             mycol.insert_one(new_mongo_row)
+            print("Logged to Mongo.")
 
         utc_date = datetime.datetime.utcfromtimestamp(feed.header.timestamp)
         local_time = pytz.utc.localize(utc_date).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S")
