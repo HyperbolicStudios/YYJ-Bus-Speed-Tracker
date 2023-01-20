@@ -14,7 +14,7 @@ from io import BytesIO
 from zipfile import ZipFile
 import shutil
 
-
+import traceback
 import pandas as pd
 import numpy as np
 
@@ -86,7 +86,7 @@ def snapshot():
         
 
 
-        if header != "Route data not provided" and mycol.count_documents({"Time": feed.header.timestamp}) == 0:
+        if header != "Route data not provided" and mycol.count_documents({"Time": feed.header.timestamp,"Trip ID": "entity.vehicle.trip.trip_id"}) == 0:
             i = i+1
             new_mongo_row = {
                 "Time": feed.header.timestamp,
@@ -162,8 +162,33 @@ def track_and_log_to_mongo():
                 continue
             
             mycol.insert_one(new_row)
-
+        
         print("Logged feed.")
         time.sleep(30)
         return    
 
+
+def download_from_mongo():
+
+    #download all data from mongo
+    myquery = {}
+    mydoc = mycol.find(myquery)
+    df = pd.DataFrame(list(mydoc))
+    df = df.drop(columns = ["_id"])
+          
+    #merge with trip data using trip ID
+    #convert Trip Id  and trip_id to int
+    df["Trip ID"] = df["Trip ID"].apply(lambda x: int(x))
+    trips["trip_id"] = trips["trip_id"].apply(lambda x: int(x))
+    df = df.merge(trips, left_on = "Trip ID", right_on = "trip_id", how = "left")
+    
+    df = df.drop(columns = ["trip_id"])
+    
+    #convert timestamp to local time
+    #df["Time"] = df["Time"].apply(lambda x: datetime.datetime.utcfromtimestamp(x))
+   # df["Time"] = df["Time"].apply(lambda x: pytz.utc.localize(x).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S"))
+
+    #write to csv
+    print(df.head())
+    df.to_csv("output/timeline.csv", index = False)
+    return
