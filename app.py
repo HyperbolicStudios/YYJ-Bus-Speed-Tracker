@@ -1,10 +1,8 @@
 from flask import Flask, render_template
 from flask_apscheduler import APScheduler
-import time
+
 from tracking import snapshot
 from mapping import map
-import os
-import pandas as pd
 
 map(snapshot(),title="YYJ Bus Speeds")
 
