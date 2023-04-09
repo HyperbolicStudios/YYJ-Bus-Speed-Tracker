@@ -75,11 +75,9 @@ def snapshot():
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     feed = get_feed()
     
-    i = 0
     if mycol.count_documents({"Time": feed.header.timestamp}) == 0:
         print("New feed, timestamp = {}. Logging to Mongo...".format(feed.header.timestamp))
         for entity in feed.entity:
-
             try:
                 trip = get_trip_data(entity.vehicle.trip.trip_id)
                 header = trip.trip_headsign.values[0]
@@ -88,7 +86,7 @@ def snapshot():
                 header = "Route data not provided"
         
             if header != "Route data not provided":
-                i = i+1
+             
                 new_mongo_row = {
                     "Time": feed.header.timestamp,
                     "Trip ID": entity.vehicle.trip.trip_id,
@@ -99,7 +97,7 @@ def snapshot():
                 }
 
                 mycol.insert_one(new_mongo_row)
-                print("Logged {} documents to Mongo.".format(i))
+                
 
             utc_date = datetime.datetime.utcfromtimestamp(feed.header.timestamp)
             local_time = pytz.utc.localize(utc_date).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S")
@@ -145,6 +143,4 @@ def audit_live_data():
     return"""
 
 
-mycol.delete_many(
-   {}
-)
+update_static()
