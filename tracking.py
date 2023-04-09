@@ -77,7 +77,7 @@ def snapshot():
     
     i = 0
     if mycol.count_documents({"Time": feed.header.timestamp}) == 0:
-        print("New feed. Logging to Mongo...")
+        print("New feed, timestamp = {}. Logging to Mongo...".format(feed.header.timestamp))
         for entity in feed.entity:
 
             try:
@@ -145,3 +145,6 @@ def audit_live_data():
     return"""
 
 
+mycol.delete_many(
+   {}
+)
