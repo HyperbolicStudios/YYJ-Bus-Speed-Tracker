@@ -5,7 +5,7 @@ from tracking import snapshot
 from mapping import map
 
 data = snapshot()
-if data != 0:
+if data.empty == False:
     map(data,title="YYJ Bus Speeds")
 
 # create app
@@ -22,7 +22,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 @scheduler.task('interval', id='do_job_1', seconds=10, misfire_grace_time=900)
 def job1():
     data = snapshot()
-    if data != 0:
+    if data.empty == False:
         map(data,title="YYJ Bus Speeds")
     print('Job 1 executed')
     

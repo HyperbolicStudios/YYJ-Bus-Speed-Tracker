@@ -111,10 +111,8 @@ def snapshot():
         
         result = pd.DataFrame(data = {"Route":[header],"Time":[local_time],"Speed":[speed],"x":[x],"y":[y],"Notes":note},columns = ["Route","Time","Speed","x","y","Notes"])
         results = pd.concat([results, result], ignore_index = True, axis = 0)
-        return(results)
-    
-    else: #if feed isn't new, return 0. No need to log to mongo and map won't need to be updated
-        return(0)
+        
+    return(results) #if no new data, returns empty dataframe
 
 
 
