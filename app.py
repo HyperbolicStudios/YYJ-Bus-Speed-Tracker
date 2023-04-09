@@ -4,7 +4,9 @@ from flask_apscheduler import APScheduler
 from tracking import snapshot
 from mapping import map
 
-map(snapshot(),title="YYJ Bus Speeds")
+data = snapshot()
+if data != 0:
+    map(data,title="YYJ Bus Speeds")
 
 # create app
 app = Flask(__name__)
@@ -19,7 +21,9 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 # interval example
 @scheduler.task('interval', id='do_job_1', seconds=10, misfire_grace_time=900)
 def job1():
-    map(snapshot(),title="YYJ Bus Speeds")
+    data = snapshot()
+    if data != 0:
+        map(data,title="YYJ Bus Speeds")
     print('Job 1 executed')
     
 

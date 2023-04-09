@@ -22,6 +22,11 @@ import pymongo
 import dns.resolver
 from google.transit import gtfs_realtime_pb2
 
+#import bigquery
+#from google.cloud import bigquery
+
+#from google.oauth2 import service_account
+
 from mapping import map
 
 dns.resolver.default_resolver=dns.resolver.Resolver(configure=False)
@@ -85,8 +90,7 @@ def snapshot():
             header = "Route data not provided"
         
 
-
-        if header != "Route data not provided" and mycol.count_documents({"Time": feed.header.timestamp,"Trip ID": "entity.vehicle.trip.trip_id"}) == 0:
+        if header != "Route data not provided" and mycol.count_documents({"Time": feed.header.timestamp,"Trip ID": entity.vehicle.trip.trip_id}) == 0:
             i = i+1
             new_mongo_row = {
                 "Time": feed.header.timestamp,
@@ -141,7 +145,7 @@ def audit_feed_update_time(delta,end_time):
         time.sleep(delta)
 
     return
-
+audit_feed_update_time(1,90)
 def track_and_log_to_mongo():
 
     while(1):
@@ -183,12 +187,70 @@ def download_from_mongo():
     df = df.merge(trips, left_on = "Trip ID", right_on = "trip_id", how = "left")
     
     df = df.drop(columns = ["trip_id"])
-    
-    #convert timestamp to local time
-    #df["Time"] = df["Time"].apply(lambda x: datetime.datetime.utcfromtimestamp(x))
-   # df["Time"] = df["Time"].apply(lambda x: pytz.utc.localize(x).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S"))
 
-    #write to csv
-    print(df.head())
+    #Make df["Route"] the first two letters of df["trip_headsign"]
+    df["Route"] = df["trip_headsign"].apply(lambda x: x[:x.find(" ")])
+    
+    #convert 'time' to a timestamp - ISO-8601 date
+    df["Time"] = df["Time"].apply(lambda x: datetime.datetime.utcfromtimestamp(x).strftime('%Y-%m-%dT%H:%M:%SZ'))
+    df["Speed"] = df["Speed"].apply(lambda x: round(int(x)*3.6,1)) #converts to km/hr
+    
     df.to_csv("output/timeline.csv", index = False)
     return
+
+def upload_to_bigQuery():
+    key_path = "service_account.json"
+
+    credentials = service_account.Credentials.from_service_account_file(
+        key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"],
+    )
+  
+    client = bigquery.Client(credentials=credentials, project=credentials.project_id)
+
+    #upload to bigquery
+
+    dataset = client.dataset('yyj')
+    #create a table 'A'
+    table = dataset.table('bus_speeds')
+
+    job_config = bigquery.job.LoadJobConfig(
+        schema = [
+        bigquery.SchemaField('Time', 'TIMESTAMP'),
+        bigquery.SchemaField('Speed', 'FLOAT'),
+        bigquery.SchemaField('x', 'FLOAT'),
+        bigquery.SchemaField('y', 'FLOAT'),
+
+        bigquery.SchemaField('trip_headsign', 'STRING'),
+
+        bigquery.SchemaField('Route', 'STRING')
+        
+    ],
+    autodetect=False)
+
+
+    
+    
+    file = pd.read_csv("output/timeline.csv").head(3)
+
+    #drop all colomns except for ones in the schema
+    file = file[["Time","Speed","x","y","trip_headsign","Route"]]
+
+    #make sure data matches schema type
+   
+    file["Speed"] = file["Speed"].astype(float)
+    file["x"] = file["x"].astype(float)
+    file["y"] = file["y"].astype(float)
+    file["trip_headsign"] = file["trip_headsign"].astype(str)
+    file["Route"] = file["Route"].astype(str)
+
+
+    file.columns = file.columns.str.replace(" ","_")
+    file = file.fillna(0)
+
+    print(file)
+
+    job = client.load_table_from_dataframe(file, table, job_config=job_config)  
+    print(job)
+    print('JSON file loaded to BigQuery')
+#upload_to_bigQuery()
+
