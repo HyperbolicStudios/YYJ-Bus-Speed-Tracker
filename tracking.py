@@ -141,6 +141,3 @@ def audit_live_data():
         time.sleep(delta)
 
     return"""
-
-
-update_static()
