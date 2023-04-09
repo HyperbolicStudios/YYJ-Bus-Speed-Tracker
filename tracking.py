@@ -101,16 +101,16 @@ def snapshot():
                 mycol.insert_one(new_mongo_row)
                 print("Logged {} documents to Mongo.".format(i))
 
-        utc_date = datetime.datetime.utcfromtimestamp(feed.header.timestamp)
-        local_time = pytz.utc.localize(utc_date).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S")
+            utc_date = datetime.datetime.utcfromtimestamp(feed.header.timestamp)
+            local_time = pytz.utc.localize(utc_date).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S")
 
-        speed = round(int(entity.vehicle.position.speed)*3.6,1) #converts to km/hr
-        x = entity.vehicle.position.longitude
-        y = entity.vehicle.position.latitude
-        note = "Route: {}   Time: {}   Speed: {} km/hr".format(header,local_time,speed)
-        
-        result = pd.DataFrame(data = {"Route":[header],"Time":[local_time],"Speed":[speed],"x":[x],"y":[y],"Notes":note},columns = ["Route","Time","Speed","x","y","Notes"])
-        results = pd.concat([results, result], ignore_index = True, axis = 0)
+            speed = round(int(entity.vehicle.position.speed)*3.6,1) #converts to km/hr
+            x = entity.vehicle.position.longitude
+            y = entity.vehicle.position.latitude
+            note = "Route: {}   Time: {}   Speed: {} km/hr".format(header,local_time,speed)
+            
+            result = pd.DataFrame(data = {"Route":[header],"Time":[local_time],"Speed":[speed],"x":[x],"y":[y],"Notes":note},columns = ["Route","Time","Speed","x","y","Notes"])
+            results = pd.concat([results, result], ignore_index = True, axis = 0)
         
     return(results) #if no new data, returns empty dataframe
 
