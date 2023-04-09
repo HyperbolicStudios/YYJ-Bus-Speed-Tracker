@@ -22,11 +22,6 @@ import pymongo
 import dns.resolver
 from google.transit import gtfs_realtime_pb2
 
-#import bigquery
-#from google.cloud import bigquery
-
-#from google.oauth2 import service_account
-
 from mapping import map
 
 dns.resolver.default_resolver=dns.resolver.Resolver(configure=False)
@@ -79,30 +74,32 @@ def get_trip_data(id): #searches the csv file and returns trip data (route #, di
 def snapshot():
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     feed = get_feed()
+    
     i = 0
-    for entity in feed.entity:
+    if mycol.count_documents({"Time": feed.header.timestamp}) == 0:
+        print("New feed. Logging to Mongo...")
+        for entity in feed.entity:
 
-        try:
-            trip = get_trip_data(entity.vehicle.trip.trip_id)
-            header = trip.trip_headsign.values[0]
+            try:
+                trip = get_trip_data(entity.vehicle.trip.trip_id)
+                header = trip.trip_headsign.values[0]
+            
+            except:
+                header = "Route data not provided"
         
-        except:
-            header = "Route data not provided"
-        
+            if header != "Route data not provided":
+                i = i+1
+                new_mongo_row = {
+                    "Time": feed.header.timestamp,
+                    "Trip ID": entity.vehicle.trip.trip_id,
+                    "Speed": entity.vehicle.position.speed,
+                    "x": entity.vehicle.position.longitude,
+                    "y": entity.vehicle.position.latitude,
+                    "Occupancy Status": entity.vehicle.occupancy_status
+                }
 
-        if header != "Route data not provided" and mycol.count_documents({"Time": feed.header.timestamp,"Trip ID": entity.vehicle.trip.trip_id}) == 0:
-            i = i+1
-            new_mongo_row = {
-                "Time": feed.header.timestamp,
-                "Trip ID": entity.vehicle.trip.trip_id,
-                "Speed": entity.vehicle.position.speed,
-                "x": entity.vehicle.position.longitude,
-                "y": entity.vehicle.position.latitude,
-                "Occupancy Status": entity.vehicle.occupancy_status
-            }
-
-            mycol.insert_one(new_mongo_row)
-            print("Logged {} documents to Mongo.".format(i))
+                mycol.insert_one(new_mongo_row)
+                print("Logged {} documents to Mongo.".format(i))
 
         utc_date = datetime.datetime.utcfromtimestamp(feed.header.timestamp)
         local_time = pytz.utc.localize(utc_date).astimezone(pytz.timezone('US/Pacific')).strftime("%H:%M:%S")
@@ -114,8 +111,11 @@ def snapshot():
         
         result = pd.DataFrame(data = {"Route":[header],"Time":[local_time],"Speed":[speed],"x":[x],"y":[y],"Notes":note},columns = ["Route","Time","Speed","x","y","Notes"])
         results = pd.concat([results, result], ignore_index = True, axis = 0)
+        return(results)
+    
+    else: #if feed isn't new, return 0. No need to log to mongo and map won't need to be updated
+        return(0)
 
-    return(results)
 
 
 def audit_live_data():
@@ -131,7 +131,7 @@ def audit_live_data():
 
 #audit_feed_update_time()
 
-def audit_feed_update_time(delta,end_time):
+"""def audit_feed_update_time(delta,end_time):
     #poll gtfs feed every delta seconds, for end_time seconds
     
     start_time = datetime.datetime.now()
@@ -144,113 +144,6 @@ def audit_feed_update_time(delta,end_time):
             old_timestamp = feed.header.timestamp
         time.sleep(delta)
 
-    return
-audit_feed_update_time(1,90)
-def track_and_log_to_mongo():
+    return"""
 
-    while(1):
-        feed = get_feed()
-        for entity in feed.entity:
-            try:
-                trip = get_trip_data(entity.vehicle.trip.trip_id)
-                new_row = {
-                        "Time": feed.header.timestamp,
-                        "Trip ID": entity.vehicle.trip.trip_id,
-                        "Speed": entity.vehicle.position.speed,
-                        "x": entity.vehicle.position.longitude,
-                        "y": entity.vehicle.position.latitude,
-                        "Occupancy Status": entity.vehicle.occupancy_status
-                        }
-
-            except:
-                continue
-            
-            mycol.insert_one(new_row)
-        
-        print("Logged feed.")
-        time.sleep(30)
-        return    
-
-
-def download_from_mongo():
-
-    #download all data from mongo
-    myquery = {}
-    mydoc = mycol.find(myquery)
-    df = pd.DataFrame(list(mydoc))
-    df = df.drop(columns = ["_id"])
-          
-    #merge with trip data using trip ID
-    #convert Trip Id  and trip_id to int
-    df["Trip ID"] = df["Trip ID"].apply(lambda x: int(x))
-    trips["trip_id"] = trips["trip_id"].apply(lambda x: int(x))
-    df = df.merge(trips, left_on = "Trip ID", right_on = "trip_id", how = "left")
-    
-    df = df.drop(columns = ["trip_id"])
-
-    #Make df["Route"] the first two letters of df["trip_headsign"]
-    df["Route"] = df["trip_headsign"].apply(lambda x: x[:x.find(" ")])
-    
-    #convert 'time' to a timestamp - ISO-8601 date
-    df["Time"] = df["Time"].apply(lambda x: datetime.datetime.utcfromtimestamp(x).strftime('%Y-%m-%dT%H:%M:%SZ'))
-    df["Speed"] = df["Speed"].apply(lambda x: round(int(x)*3.6,1)) #converts to km/hr
-    
-    df.to_csv("output/timeline.csv", index = False)
-    return
-
-def upload_to_bigQuery():
-    key_path = "service_account.json"
-
-    credentials = service_account.Credentials.from_service_account_file(
-        key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"],
-    )
-  
-    client = bigquery.Client(credentials=credentials, project=credentials.project_id)
-
-    #upload to bigquery
-
-    dataset = client.dataset('yyj')
-    #create a table 'A'
-    table = dataset.table('bus_speeds')
-
-    job_config = bigquery.job.LoadJobConfig(
-        schema = [
-        bigquery.SchemaField('Time', 'TIMESTAMP'),
-        bigquery.SchemaField('Speed', 'FLOAT'),
-        bigquery.SchemaField('x', 'FLOAT'),
-        bigquery.SchemaField('y', 'FLOAT'),
-
-        bigquery.SchemaField('trip_headsign', 'STRING'),
-
-        bigquery.SchemaField('Route', 'STRING')
-        
-    ],
-    autodetect=False)
-
-
-    
-    
-    file = pd.read_csv("output/timeline.csv").head(3)
-
-    #drop all colomns except for ones in the schema
-    file = file[["Time","Speed","x","y","trip_headsign","Route"]]
-
-    #make sure data matches schema type
-   
-    file["Speed"] = file["Speed"].astype(float)
-    file["x"] = file["x"].astype(float)
-    file["y"] = file["y"].astype(float)
-    file["trip_headsign"] = file["trip_headsign"].astype(str)
-    file["Route"] = file["Route"].astype(str)
-
-
-    file.columns = file.columns.str.replace(" ","_")
-    file = file.fillna(0)
-
-    print(file)
-
-    job = client.load_table_from_dataframe(file, table, job_config=job_config)  
-    print(job)
-    print('JSON file loaded to BigQuery')
-#upload_to_bigQuery()
 
