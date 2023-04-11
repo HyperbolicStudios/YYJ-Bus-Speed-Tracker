@@ -32,9 +32,10 @@ def map(data,title="Chart"):
             marker=go.scattermapbox.Marker(
                 size=8,
                 color = data["Speed"],
-                colorscale = plotly.colors.diverging.RdYlGn,
-                colorbar_title="Speed (Km/Hr)"
-
+                colorscale =  [(0, "red"), (.25, "yellow"), (.5, "green"), (1, "darkgreen")],
+                colorbar_title="Speed (Km/Hr)",
+                cmin=0,
+                cmax = 80
             ),
             text = data["Notes"]
         ))
@@ -45,6 +46,7 @@ def map(data,title="Chart"):
         hovermode='closest',
         mapbox=dict(
             accesstoken=mapbox_access_token,
+            style = "mapbox://styles/markedwardson/clgbco9rt001z01nw5kb5p0rr",
             bearing=0,
             center=go.layout.mapbox.Center(
                 lat=data["y"][1],
@@ -52,9 +54,9 @@ def map(data,title="Chart"):
             ),
             pitch=0,
             zoom=12
-        )
-    )
+       
+    ))
 
     #x = py.plot(fig,auto_open=True)
-    pio.write_html(fig, file='templates/map.html', auto_open=False)
-    return
+    #pio.write_html(fig, file='templates/map.html', auto_open=False)
+    return(fig)

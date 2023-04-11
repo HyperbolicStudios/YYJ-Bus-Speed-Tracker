@@ -90,7 +90,7 @@ def snapshot():
                 new_mongo_row = {
                     "Time": feed.header.timestamp,
                     "Trip ID": entity.vehicle.trip.trip_id,
-                    "Speed": entity.vehicle.position.speed,
+                    "Speed": entity.vehicle.position.speed*3.6,
                     "x": entity.vehicle.position.longitude,
                     "y": entity.vehicle.position.latitude,
                     "Occupancy Status": entity.vehicle.occupancy_status
@@ -113,31 +113,3 @@ def snapshot():
     return(results) #if no new data, returns empty dataframe
 
 
-
-def audit_live_data():
-    feed = get_feed()
-    for entity in feed.entity:
-        try:
-            trip = get_trip_data(entity.vehicle.trip.trip_id)
-            header = trip.trip_headsign.values[0]
-            return(1)
-        except:
-            header = "Route data not provided"
-    return(0)
-
-#audit_feed_update_time()
-
-"""def audit_feed_update_time(delta,end_time):
-    #poll gtfs feed every delta seconds, for end_time seconds
-    
-    start_time = datetime.datetime.now()
-    old_timestamp = 0
-    while((datetime.datetime.now()-start_time).total_seconds() < end_time):
-        feed = get_feed()
-        timestamp = feed.header.timestamp
-        if timestamp != old_timestamp:
-            print("Updated feed. Delta: {}".format(timestamp-old_timestamp))
-            old_timestamp = feed.header.timestamp
-        time.sleep(delta)
-
-    return"""
