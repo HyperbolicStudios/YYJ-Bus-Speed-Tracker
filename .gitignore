@@ -1,4 +1,5 @@
 output/frames/
 __pycache__/
+historical_speed_data/
 service_account.json
 *.pyc
