@@ -1,4 +1,4 @@
 output/frames/
+__pycache__/
 service_account.json
-*.pyc
 *.pyc
