@@ -58,5 +58,5 @@ def map(data,title="YYJ Bus Speeds"):
     ))
 
     #x = py.plot(fig,auto_open=True)
-    #pio.write_html(fig, file='templates/map.html', auto_open=False)
+    pio.write_html(fig, file='templates/map.html', auto_open=False)
     return(fig)
