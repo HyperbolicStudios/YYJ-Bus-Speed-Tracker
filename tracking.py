@@ -97,8 +97,6 @@ def snapshot():
                     "y": entity.vehicle.position.latitude,
                     "Occupancy Status": entity.vehicle.occupancy_status
                 }
-
-                print(new_mongo_row)
                 
                 mycol.insert_one(new_mongo_row)
                 
@@ -115,6 +113,8 @@ def snapshot():
             results = pd.concat([results, result], ignore_index = True, axis = 0)
         
     return(results) #if no new data, returns empty dataframe
+
+#snapshot()
 
 """
 feed = get_feed()
