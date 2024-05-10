@@ -77,7 +77,7 @@ def snapshot():
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     feed = get_feed()
     
-    if mycol.count_documents({"Time": feed.header.timestamp}) == 0 or True:
+    if mycol.count_documents({"Time": feed.header.timestamp}) == 0:
         print("New feed, timestamp = {}. Logging to Mongo...".format(feed.header.timestamp))
         for entity in feed.entity:
             try:
@@ -118,6 +118,8 @@ def snapshot():
             results = pd.concat([results, result], ignore_index = True, axis = 0)
         
     return(results) #if no new data, returns empty dataframe
+
+
 
 """
 feed = get_feed()
