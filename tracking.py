@@ -41,9 +41,6 @@ else:
     newDirectory = directory[:(directory.rfind("\\")+1)]
 os.chdir(newDirectory)
 
-
-trips = pd.read_csv("google_transit/trips.csv")
-
 def update_static():
     url = "http://victoria.mapstrat.com/current/google_transit.zip"
     
@@ -61,6 +58,11 @@ def update_static():
     print("Updated static GTFS data from " + url)
     return
 
+update_static()
+
+trips = pd.read_csv("google_transit/trips.csv")
+routes = pd.read_csv("google_transit/routes.csv")
+
 def get_feed(url="http://victoria.mapstrat.com/current/gtfrealtime_VehiclePositions.bin"):
 
     feed = gtfs_realtime_pb2.FeedMessage()
@@ -75,7 +77,7 @@ def snapshot():
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     feed = get_feed()
     
-    if mycol.count_documents({"Time": feed.header.timestamp}) == 0:
+    if mycol.count_documents({"Time": feed.header.timestamp}) == 0 or True:
         print("New feed, timestamp = {}. Logging to Mongo...".format(feed.header.timestamp))
         for entity in feed.entity:
             try:
@@ -86,9 +88,14 @@ def snapshot():
                 header = "Route data not provided"
         
             if header != "Route data not provided":
-             
+                
+                route_id = entity.vehicle.trip.route_id
+                route = routes.loc[routes['route_id'] == route_id]
+                route_short_name = route['route_short_name'].values[0]
+
                 new_mongo_row = {
                     "Time": feed.header.timestamp,
+                    "Route": route_short_name,
                     "Trip ID": entity.vehicle.trip.trip_id,
                     "Speed": entity.vehicle.position.speed*3.6,
                     "x": entity.vehicle.position.longitude,
@@ -112,4 +119,27 @@ def snapshot():
         
     return(results) #if no new data, returns empty dataframe
 
+"""
+feed = get_feed()
+statuses = []
+for entity in feed.entity:
 
+    #append occupancy status to statuses list
+    status = entity.vehicle.occupancy_status
+
+    #convert status to text based on the above info
+    if status == 0:
+        statuses.append("EMPTY")
+    elif status == 1:
+        statuses.append("MANY_SEATS_AVAILABLE")
+    elif status == 2:
+        statuses.append("FEW_SEATS_AVAILABLE")
+    elif status == 3:
+        statuses.append("STANDING_ROOM_ONLY")
+    elif status == 5:
+        statuses.append("FULL")
+    else:
+        print('error')
+        print(status)
+
+"""

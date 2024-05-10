@@ -49,13 +49,11 @@ def download_from_mongo(month,day):
 
     e1 = int(time.mktime(datetime.datetime(2023, month, day, 0, 0, 0, 0, pytz.timezone('US/Pacific')).timetuple()))
     e2 = int(time.mktime(datetime.datetime(2023, month, day, 23, 59, 59, 0, pytz.timezone('US/Pacific')).timetuple()))+3*3600
-    
+        
     myquery = { "Time": { "$gt": e1, "$lt": e2 } }
     mydoc = mycol.find(myquery)
     df = pd.DataFrame(list(mydoc))
     df = df.drop(columns = ["_id"])
-          
-    print(df)
     return(df)
 
 def create_frames(df):
@@ -101,7 +99,7 @@ def create_frames(df):
             title_x = 0.5,
             hovermode='closest',
             width = 1600,
-            height = 900,
+            height = 912,
             margin=dict(l=0, r=0, t=0, b=0),
             mapbox=dict(
                 accesstoken=mapbox_access_token,
@@ -171,6 +169,8 @@ def create_video():
     writer.close()
     return
 
-df = download_from_mongo(4, 11)
+df = download_from_mongo(month=4,day=13)
 create_frames(df)
 create_video()
+
+

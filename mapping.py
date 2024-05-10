@@ -10,9 +10,9 @@ from os.path import abspath
 import traceback
 
 username = 'markedwardson' # your plotly username
-api_key = 'WIAjN7QL8J93lT9a296Q' # your plotly api key - go to profile > settings > regenerate key
+api_key = os.environ["PLOTLY_API_KEY"] # your plotly api key - go to profile > settings > regenerate key
 chart_studio.tools.set_credentials_file(username=username, api_key=api_key)
-mapbox_access_token = "pk.eyJ1IjoibWFya2Vkd2FyZHNvbiIsImEiOiJjbDNjanIwMTYwMWZ1M2JxdjlpM2FoZG45In0.yHtIIsPy7ch-Qv_q45jqNQ"
+mapbox_access_token = os.environ['MAPBOX_KEY']
 
 #set active directory to file location
 directory = abspath(getsourcefile(lambda:0))
@@ -23,7 +23,7 @@ else:
     newDirectory = directory[:(directory.rfind("\\")+1)]
 os.chdir(newDirectory)
 
-def map(data,title="Chart"):
+def map(data,title="YYJ Bus Speeds"):
 
     fig = go.Figure(go.Scattermapbox(
             lat=data["y"],
@@ -58,5 +58,5 @@ def map(data,title="Chart"):
     ))
 
     #x = py.plot(fig,auto_open=True)
-    pio.write_html(fig, file='templates/map.html', auto_open=False)
+    #pio.write_html(fig, file='templates/map.html', auto_open=False)
     return(fig)
