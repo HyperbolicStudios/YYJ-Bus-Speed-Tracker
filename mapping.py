@@ -9,9 +9,9 @@ from inspect import getsourcefile
 from os.path import abspath
 import traceback
 
-username = 'markedwardson' # your plotly username
-api_key = os.environ["PLOTLY_API_KEY"] # your plotly api key - go to profile > settings > regenerate key
-chart_studio.tools.set_credentials_file(username=username, api_key=api_key)
+#username = 'markedwardson' # your plotly username
+#api_key = os.environ["PLOTLY_API_KEY"] # your plotly api key - go to profile > settings > regenerate key
+#chart_studio.tools.set_credentials_file(username=username, api_key=api_key)
 mapbox_access_token = os.environ['MAPBOX_KEY']
 
 #set active directory to file location
