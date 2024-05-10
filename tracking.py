@@ -42,7 +42,7 @@ else:
 os.chdir(newDirectory)
 
 def update_static():
-    url = "http://victoria.mapstrat.com/current/google_transit.zip"
+    url = "https://bct.tmix.se/Tmix.Cap.TdExport.WebApi/gtfs/?operatorIds=48"
     
     shutil.rmtree('google_transit')
     http_response = urlopen(url)
@@ -63,35 +63,30 @@ update_static()
 trips = pd.read_csv("google_transit/trips.csv")
 routes = pd.read_csv("google_transit/routes.csv")
 
-def get_feed(url="http://victoria.mapstrat.com/current/gtfrealtime_VehiclePositions.bin"):
-
+def get_feed(url="https://bct.tmix.se/gtfs-realtime/vehicleupdates.pb?operatorIds=48"):
     feed = gtfs_realtime_pb2.FeedMessage()
     response = requests.get(url)
     feed.ParseFromString(response.content)
-    return(feed)
-
-def get_trip_data(id): #searches the csv file and returns trip data (route #, direction, etc.)
-    return(trips.loc[trips['trip_id']==int(id)])
+    return feed
 
 def snapshot():
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     feed = get_feed()
-    
+       
     if mycol.count_documents({"Time": feed.header.timestamp}) == 0:
         print("New feed, timestamp = {}. Logging to Mongo...".format(feed.header.timestamp))
         for entity in feed.entity:
             try:
-                trip = get_trip_data(entity.vehicle.trip.trip_id)
-                header = trip.trip_headsign.values[0]
-            
+                trip_data = trips.loc[trips['trip_id']==entity.vehicle.trip.trip_id]
+                header = trip_data.trip_headsign.values[0]
             except:
                 header = "Route data not provided"
-        
+
             if header != "Route data not provided":
                 
                 route_id = entity.vehicle.trip.route_id
                 route = routes.loc[routes['route_id'] == route_id]
-                route_short_name = route['route_short_name'].values[0]
+                route_short_name = int(route['route_short_name'].values[0])
 
                 new_mongo_row = {
                     "Time": feed.header.timestamp,
@@ -103,6 +98,8 @@ def snapshot():
                     "Occupancy Status": entity.vehicle.occupancy_status
                 }
 
+                print(new_mongo_row)
+                
                 mycol.insert_one(new_mongo_row)
                 
 
@@ -118,8 +115,6 @@ def snapshot():
             results = pd.concat([results, result], ignore_index = True, axis = 0)
         
     return(results) #if no new data, returns empty dataframe
-
-
 
 """
 feed = get_feed()
