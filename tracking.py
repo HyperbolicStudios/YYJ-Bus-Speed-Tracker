@@ -28,7 +28,7 @@ dns.resolver.default_resolver=dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers=['8.8.8.8']
 
 client = pymongo.MongoClient(os.environ['MONGO_URL'])
-mydb = client.Cluster0
+mydb = client.BSR_Cluster
 mycol = mydb["transit_speed_data"]
 
 #from graphing import graph_variables
@@ -88,14 +88,16 @@ def snapshot():
                 route = routes.loc[routes['route_id'] == route_id]
                 route_short_name = int(route['route_short_name'].values[0])
 
+                speed = round(int(entity.vehicle.position.speed)*3.6,1) #converts to km/hr
+
                 new_mongo_row = {
                     "Time": feed.header.timestamp,
                     "Route": route_short_name,
-                    "Trip ID": entity.vehicle.trip.trip_id,
-                    "Speed": entity.vehicle.position.speed*3.6,
+                    "T_ID": entity.vehicle.trip.trip_id,
+                    "v": speed,
                     "x": entity.vehicle.position.longitude,
                     "y": entity.vehicle.position.latitude,
-                    "Occupancy Status": entity.vehicle.occupancy_status
+                    "Occ": entity.vehicle.occupancy_status
                 }
                 
                 mycol.insert_one(new_mongo_row)
