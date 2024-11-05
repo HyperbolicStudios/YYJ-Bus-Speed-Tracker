@@ -112,7 +112,7 @@ def snapshot():
             y = entity.vehicle.position.latitude
             
             #route_num is the header if header is not available, otherwise it is the route number
-            header = header if header == "Null" else route_short_name =": " + header
+            header = header if header == "Null" else route_short_name + ": " + header
             note = "Route: {}   Time: {}   Speed: {} km/hr".format(header,local_time,speed)
             
             result = pd.DataFrame(data = {"Route":[header],"Time":[local_time],"Speed":[speed],"x":[x],"y":[y],"Notes":note},columns = ["Route","Time","Speed","x","y","Notes"])
