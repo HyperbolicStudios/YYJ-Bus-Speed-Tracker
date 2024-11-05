@@ -28,7 +28,7 @@ dns.resolver.default_resolver=dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers=['8.8.8.8']
 
 client = pymongo.MongoClient(os.environ['MONGO_URL'])
-mydb = client.BSR_Cluster
+mydb = client.Cluster0
 mycol = mydb["transit_speed_data"]
 
 #from graphing import graph_variables
@@ -86,7 +86,7 @@ def snapshot():
                 
                 route_id = entity.vehicle.trip.route_id
                 route = routes.loc[routes['route_id'] == route_id]
-                route_short_name = int(route['route_short_name'].values[0])
+                route_short_name = route['route_short_name'].values[0]
 
                 speed = round(int(entity.vehicle.position.speed)*3.6,1) #converts to km/hr
 
@@ -116,29 +116,4 @@ def snapshot():
         
     return(results) #if no new data, returns empty dataframe
 
-#snapshot()
-
-"""
-feed = get_feed()
-statuses = []
-for entity in feed.entity:
-
-    #append occupancy status to statuses list
-    status = entity.vehicle.occupancy_status
-
-    #convert status to text based on the above info
-    if status == 0:
-        statuses.append("EMPTY")
-    elif status == 1:
-        statuses.append("MANY_SEATS_AVAILABLE")
-    elif status == 2:
-        statuses.append("FEW_SEATS_AVAILABLE")
-    elif status == 3:
-        statuses.append("STANDING_ROOM_ONLY")
-    elif status == 5:
-        statuses.append("FULL")
-    else:
-        print('error')
-        print(status)
-
-"""
+snapshot()

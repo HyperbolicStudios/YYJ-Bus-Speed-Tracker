@@ -2,30 +2,39 @@
 1-VIC,1,South Oak Bay / Downtown,3,004B8D,FFFFFF
 2-VIC,2,James Bay / South Oak Bay,3,8CC63F,FFFFFF
 3-VIC,3,James Bay / Royal Jubilee,3,F37421,FFFFFF
-4-VIC,4,UVic / Downtown,3,00AEEF,FFFFFF
+4-VIC,4,UVic / Downtown via Hillside,3,00AEEF,FFFFFF
 5-VIC,5,James Bay / Willows,3,8177B7,FFFFFF
 6-VIC,6,Royal Oak Exch / Downtown,3,FCAF17,FFFFFF
-7-VIC,7,UVic / Downtown,3,00AA47,FFFFFF
+7-VIC,7,UVic / Downtown via Fairfield,3,00AA47,FFFFFF
 8-VIC,8,Interurban / Tillicum Centre / Oak Bay,3,ED1D8F,FFFFFF
 9-VIC,9,Royal Oak / UVic,3,8177B7,FFFFFF
 10-VIC,10,James Bay / Royal Jubilee,3,49176B,FFFFFF
 11-VIC,11,Tillicum Centre / UVic,3,B2BB1E,FFFFFF
 12-VIC,12,University Heights / UVic,3,4F6F19,FFFFFF
-13-VIC,13,Ten Mile Point / UVic,3,77AF99,FFFFFF
 14-VIC,14,Vic General / UVic,3,E270AB,FFFFFF
 15-VIC,15,Esquimalt / UVic,3,5D87A1,FFFFFF
 17-VIC,17,Cedar Hill,3,F49A5D,FFFFFF
+6A-VIC,6A,Royal Oak Exch / Downtown via Emily Carr,3,FCAF17,FFFFFF
+6B-VIC,6B,Royal Oak Exch / Downtown via Chatterton,3,FCAF17,FFFFFF
+7N-VIC,7N,UVic / Downtown via Fairfield Night Route,3,00AA47,FFFFFF
+21N-VIC,21N,Interurban Night Route,3,B3AA7E,FFFFFF
 21-VIC,21,Interurban / Downtown,3,B3AA7E,FFFFFF
 22-VIC,22,Vic General / Hillside Centre,3,BF83B9,FFFFFF
+22A-VIC,22A,Vic General / Hillside Centre via Strawberry Vale,3,BF83B9,FFFFFF
 24-VIC,24,Cedar Hill / Tillicum Centre,3,A54499,FFFFFF
 25-VIC,25,Maplewood / Tillicum Centre,3,00B5AD,FFFFFF
-26-VIC,26,Dockyard / UVic,3,B06E0E,FFFFFF
+26-VIC,26,UVic / Dockyard,3,B06E0E,FFFFFF
 27-VIC,27,Gordon Head / Downtown,3,8E0C3A,FFFFFF
 28-VIC,28,Majestic / Downtown,3,E31937,FFFFFF
+27X-VIC,27X,Downtown Express,3,8E0C3A,FFFFFF
 30-VIC,30,Royal Oak Exch / Downtown,3,AC5C3B,FFFFFF
 31-VIC,31,Royal Oak Exch / Downtown,3,875D9F,FFFFFF
 32-VIC,32,Cordova Bay / Royal Oak Exch,3,7C3F25,FFFFFF
+28X-VIC,28X,Majestic Express,3,E31937,FFFFFF
+70X-VIC,70X,Swartz Bay / Downtown Express,3,00B5AD,FFFFFF
 35-VIC,35,Ridge,3,91278F,FFFFFF
+26A-VIC,26A,UVic / Uptown via Saanich Rd,3,B06E0E,FFFFFF
+26B-VIC,26B,UVic / Uptown via Carey Rd,3,B06E0E,FFFFFF
 39-VIC,39,Westhills / Interurban / Royal Oak / UVic,3,FFC20E,FFFFFF
 43-VIC,43,Royal Roads via Belmont Park,3,004B8D,FFFFFF
 46-VIC,46,Dockyard / Westhills,3,8CC63F,FFFFFF

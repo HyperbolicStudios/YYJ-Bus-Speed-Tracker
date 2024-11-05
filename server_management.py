@@ -25,7 +25,7 @@ from google.transit import gtfs_realtime_pb2
 from mapping import map
 import matplotlib.pyplot as plt
 
-from tracking import snapshot
+
 dns.resolver.default_resolver=dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers=['8.8.8.8']
 
@@ -44,15 +44,27 @@ else:
 os.chdir(newDirectory)
 
 def download_from_mongo():
-
     #download all data from mongo
     myquery = {}
     mydoc = mycol.find(myquery)
     df = pd.DataFrame(list(mydoc))
     df = df.drop(columns = ["_id"])
     
-    df.to_csv("output/timeline_new_may.csv", index = False)
+    timestamp = df["Time"].iloc[-1]
+    timestamp = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d')
+
+    df.to_csv("historical speed data/{}-timeline.csv".format(timestamp), index = False)
     return
 
+def clear_mongo():
+    #clear all data from mongo
+    myquery = {}
+    mycol.delete_many(myquery)
+    return
 
-download_from_mongo()
+def download_and_clear():
+    download_from_mongo()
+    clear_mongo()
+    return
+
+clear_mongo()
