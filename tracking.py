@@ -94,11 +94,11 @@ def snapshot():
                     "Time": feed.header.timestamp,
                     "Route": route_short_name,
                     "Header": header,
-                    "T_ID": entity.vehicle.trip.trip_id,
-                    "v": speed,
+                    "Trip ID": entity.vehicle.trip.trip_id,
+                    "Speed": speed,
                     "x": entity.vehicle.position.longitude,
                     "y": entity.vehicle.position.latitude,
-                    "Occ": entity.vehicle.occupancy_status
+                    "Occupancy Status": entity.vehicle.occupancy_status
                 }
                 
                 mycol.insert_one(new_mongo_row)
