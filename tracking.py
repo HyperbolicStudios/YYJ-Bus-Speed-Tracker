@@ -94,6 +94,7 @@ def snapshot():
                     "Time": feed.header.timestamp,
                     "Route": route_short_name,
                     "Header": header,
+                    "T_ID": entity.vehicle.trip.trip_id,
                     "v": speed,
                     "x": entity.vehicle.position.longitude,
                     "y": entity.vehicle.position.latitude,
