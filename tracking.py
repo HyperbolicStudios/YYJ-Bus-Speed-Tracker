@@ -109,7 +109,11 @@ def snapshot():
             speed = round(int(entity.vehicle.position.speed)*3.6,1) #converts to km/hr
             x = entity.vehicle.position.longitude
             y = entity.vehicle.position.latitude
-            note = "Route: {}   Time: {}   Speed: {} km/hr".format(header,local_time,speed)
+            
+            #route_num is the header if header is not available, otherwise it is the route number
+            route_num = header if header == "Route data not provided" else route_short_name
+
+            note = "Route: {}   Time: {}   Speed: {} km/hr".format(route_num,local_time,speed)
             
             result = pd.DataFrame(data = {"Route":[header],"Time":[local_time],"Speed":[speed],"x":[x],"y":[y],"Notes":note},columns = ["Route","Time","Speed","x","y","Notes"])
             results = pd.concat([results, result], ignore_index = True, axis = 0)
