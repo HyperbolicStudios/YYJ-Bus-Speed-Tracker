@@ -78,8 +78,6 @@ def get_headers_df():
 
 update_static()
 
-headers_df = get_headers_df()
-
 trips = pd.read_csv("google_transit/trips.csv")
 routes = pd.read_csv("google_transit/routes.csv")
 
@@ -89,7 +87,8 @@ def get_feed(url="https://bct.tmix.se/gtfs-realtime/vehicleupdates.pb?operatorId
     feed.ParseFromString(response.content)
     return feed
 
-def snapshot(headers_df = headers_df):
+def snapshot():
+    headers_df = get_headers_df()
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     feed = get_feed()
        
