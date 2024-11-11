@@ -1,7 +1,6 @@
-output/frames/
+output/
 __pycache__/
 historical speed data/
 service_account.json
-google_transit/
 output/
-/google_transit
+google_transit/

@@ -76,7 +76,7 @@ def get_headers_df():
     df = pd.concat([df, pd.DataFrame([{"Header_ID": 0, "Header": "Placeholder"}])], ignore_index=True)
     return df
 
-#update_static()
+update_static()
 
 headers_df = get_headers_df()
 
