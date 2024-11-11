@@ -44,22 +44,29 @@ else:
 os.chdir(newDirectory)
 
 def download_from_mongo():
+    print("Downloading data from MongoDB")
     #download all data from mongo
     myquery = {}
     mydoc = mycol.find(myquery)
     df = pd.DataFrame(list(mydoc))
-    df = df.drop(columns = ["_id"])
-    
-    timestamp = df["Time"].iloc[-1]
-    timestamp = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d')
+    df = df.drop(columns=["_id"])
 
-    df.to_csv("historical speed data/{}-timeline.csv".format(timestamp), index = False)
+    earliest_timestamp = df["Time"].min()
+    latest_timestamp = df["Time"].max()
+    
+    earliest_date = datetime.datetime.fromtimestamp(earliest_timestamp).strftime('%Y-%m-%d')
+    latest_date = datetime.datetime.fromtimestamp(latest_timestamp).strftime('%Y-%m-%d')
+    print("Downloaded. Saving...")
+
+    df.to_csv(f"historical speed data/{earliest_date}_to_{latest_date}-timeline.csv", index=False)
+    print("Saved.")
     return
 
 def clear_mongo():
-    #clear all data from mongo
-    myquery = {}
-    mycol.delete_many(myquery)
+    print("Clearing MongoDB")
+    # drop the entire collection
+    mycol.drop()
+    print("Collection dropped.")
     return
 
 def download_and_clear():
@@ -68,3 +75,5 @@ def download_and_clear():
     return
 
 clear_mongo()
+
+#download_and_clear()

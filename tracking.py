@@ -30,6 +30,7 @@ dns.resolver.default_resolver.nameservers=['8.8.8.8']
 client = pymongo.MongoClient(os.environ['MONGO_URL'])
 mydb = client.Cluster0
 mycol = mydb["transit_speed_data"]
+header_col = mydb["headers"]
 
 #from graphing import graph_variables
 #set active directory to file location
@@ -44,7 +45,11 @@ os.chdir(newDirectory)
 def update_static():
     url = "https://bct.tmix.se/Tmix.Cap.TdExport.WebApi/gtfs/?operatorIds=48"
     
-    shutil.rmtree('google_transit')
+    try:
+        shutil.rmtree('google_transit')
+    except:
+        pass
+
     http_response = urlopen(url)
     zipfile = ZipFile(BytesIO(http_response.read()))
     zipfile.extractall(path='google_transit')
@@ -58,7 +63,22 @@ def update_static():
     print("Updated static GTFS data from " + url)
     return
 
-update_static()
+def get_headers_df():
+    #get all headers from mongodb and create a pandas dataframe. Return the dataframe. Columns are HeaderID and Header
+    myquery = {}
+    mydoc = header_col.find(myquery)
+    df = pd.DataFrame(list(mydoc))
+    #df = df.drop(columns=["_id"])
+
+    #if blank, return empty dataframe with columns HeaderID and Header
+    if df.empty:
+        df = pd.DataFrame(columns = ["Header_ID","Header"])
+    df = pd.concat([df, pd.DataFrame([{"Header_ID": 0, "Header": "Placeholder"}])], ignore_index=True)
+    return df
+
+#update_static()
+
+headers_df = get_headers_df()
 
 trips = pd.read_csv("google_transit/trips.csv")
 routes = pd.read_csv("google_transit/routes.csv")
@@ -69,7 +89,7 @@ def get_feed(url="https://bct.tmix.se/gtfs-realtime/vehicleupdates.pb?operatorId
     feed.ParseFromString(response.content)
     return feed
 
-def snapshot():
+def snapshot(headers_df = headers_df):
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     feed = get_feed()
        
@@ -90,10 +110,24 @@ def snapshot():
 
                 speed = round(int(entity.vehicle.position.speed)*3.6,1) #converts to km/hr
 
+                #check if header is already in the headers collection. If not, add it in and increment the headerID from the last headerID. If it is in, get the headerID and set header to the headerID
+                #This scheme helps reduce storage space in the database
+                if header in headers_df.values:
+                    header_ID = int(headers_df.loc[headers_df['Header'] == header]['Header_ID'].values[0])
+                else:
+                    header_ID = int(headers_df['Header_ID'].max() + 1)
+                    new_header = {
+                        "Header_ID": header_ID,
+                        "Header": header
+                    }
+
+                    header_col.insert_one(new_header)
+                    headers_df = get_headers_df()
+
                 new_mongo_row = {
                     "Time": feed.header.timestamp,
                     "Route": route_short_name,
-                    "Header": header,
+                    "Header": header_ID,
                     "Trip ID": entity.vehicle.trip.trip_id,
                     "Speed": speed,
                     "x": entity.vehicle.position.longitude,
