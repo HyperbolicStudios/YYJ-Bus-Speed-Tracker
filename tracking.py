@@ -84,7 +84,7 @@ def get_trip_ids_df():
     df = pd.DataFrame(list(mydoc))
     
     if df.empty:
-        df = pd.DataFrame(columns = ["Trip_ID_ID", "Trip_ID"])
+        df = pd.DataFrame(columns = ["Trip_ID_ref", "Trip_ID"])
         df = pd.concat([df, pd.DataFrame([{"Trip_ID_ref": 0, "Trip_ID": 0}])], ignore_index=True)
     return df
 
@@ -144,7 +144,7 @@ def snapshot():
                 trip_ID = int(trip_ID[:trip_ID.find(":")])
 
                 if trip_ID in trip_ids_df.values:
-                    trip_ID = int(trip_ids_df.loc[trip_ids_df['Trip_ID'] == trip_ID]['Trip_ID_ref'].values[0])
+                    trip_ID_ref = int(trip_ids_df.loc[trip_ids_df['Trip_ID'] == trip_ID]['Trip_ID_ref'].values[0])
                 
                 else:
                     trip_ID_ref = int(trip_ids_df["Trip_ID_ref"].max() + 1)
@@ -160,7 +160,7 @@ def snapshot():
                     "Time": feed.header.timestamp,
                     "Route": route_short_name,
                     "Header": header_ID, #'compressed' header
-                    "Trip ID": trip_ID, #'compressed' trip_id
+                    "Trip ID": trip_ID_ref, #'compressed' trip_id
                     "Speed": speed,
                     "x": entity.vehicle.position.longitude,
                     "y": entity.vehicle.position.latitude,
