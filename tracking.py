@@ -88,7 +88,7 @@ def get_trip_ids_df():
         df = pd.concat([df, pd.DataFrame([{"Trip_ID_ref": 0, "Trip_ID": 0}])], ignore_index=True)
     return df
 
-#update_static()
+update_static()
 
 trips = pd.read_csv("google_transit/trips.csv")
 routes = pd.read_csv("google_transit/routes.csv")
