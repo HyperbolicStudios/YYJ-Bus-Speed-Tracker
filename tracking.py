@@ -73,7 +73,17 @@ def get_headers_df():
     #if blank, return empty dataframe with columns HeaderID and Header
     if df.empty:
         df = pd.DataFrame(columns = ["Header_ID","Header"])
-    df = pd.concat([df, pd.DataFrame([{"Header_ID": 0, "Header": "Placeholder"}])], ignore_index=True)
+        df = pd.concat([df, pd.DataFrame([{"Header_ID": 0, "Header": "Placeholder"}])], ignore_index=True)
+    return df
+
+def get_trip_ids_df():
+    myquery = {}
+    mydoc = mycol.find(myquery)
+    df = pd.DataFrame(list(mydoc))
+    
+    if df.empty:
+        df = pd.DataFrame(columns = ["Trip ID"])
+        df = pd.concat([df, pd.DataFrame([{"Trip ID": "Placeholder"}])], ignore_index=True)
     return df
 
 update_static()
@@ -89,6 +99,7 @@ def get_feed(url="https://bct.tmix.se/gtfs-realtime/vehicleupdates.pb?operatorId
 
 def snapshot():
     headers_df = get_headers_df()
+    trip_ids_df = get_trip_ids_df()
     results = pd.DataFrame(columns = ["Route","Time","Speed","x","y","Notes"])
     feed = get_feed()
        
@@ -122,7 +133,25 @@ def snapshot():
 
                     header_col.insert_one(new_header)
                     headers_df = get_headers_df()
+                #check if trip_id is already in the trip_ids collection. If not, add it in and increment the tripID from the last tripID. If it is in, get the tripID and set trip_id to the tripID
+                #This scheme helps reduce storage space in the database
+                trip_ID = entity.vehicle.trip.trip_id
+                #get everything after the first colon in the trip_id
+                trip_ID = trip_ID[trip_ID.find(":")+1:]
+                #delete the next colon and turn it to an integer
+                trip_ID = int(trip_ID[:trip_ID.find(":")])
 
+                if trip_ID in trip_ids_df.values:
+                    trip_ID = int(trip_ids_df.loc[trip_ids_df['Trip ID'] == trip_ID]['Trip ID'].values[0])
+                else:
+                    trip_ID = int(trip_ids_df['Trip ID'].max() + 1)
+                    new_trip_id = {
+                        "Trip ID": trip_ID
+                    }
+
+                    mycol.insert_one(new_trip_id)
+                    trip_ids_df = get_trip_ids_df()
+                    
                 new_mongo_row = {
                     "Time": feed.header.timestamp,
                     "Route": route_short_name,
