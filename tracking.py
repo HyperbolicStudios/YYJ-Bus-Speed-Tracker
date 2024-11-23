@@ -159,8 +159,8 @@ def snapshot():
                 new_mongo_row = {
                     "Time": feed.header.timestamp,
                     "Route": route_short_name,
-                    "Header": header_ID,
-                    "Trip ID": entity.vehicle.trip.trip_id,
+                    "Header": header_ID, #'compressed' header
+                    "Trip ID": trip_ID, #'compressed' trip_id
                     "Speed": speed,
                     "x": entity.vehicle.position.longitude,
                     "y": entity.vehicle.position.latitude,
