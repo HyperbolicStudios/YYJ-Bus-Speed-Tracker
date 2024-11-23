@@ -131,7 +131,6 @@ def snapshot():
                     "Speed": speed,
                     "x": entity.vehicle.position.longitude,
                     "y": entity.vehicle.position.latitude,
-                    "Occupancy Status": entity.vehicle.occupancy_status
                 }
                 
                 mycol.insert_one(new_mongo_row)
