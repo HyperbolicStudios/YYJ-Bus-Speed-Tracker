@@ -138,10 +138,11 @@ def snapshot():
                 #check if trip_id is already in the trip_ids collection. If not, add it in and increment the tripID from the last tripID. If it is in, get the tripID and set trip_id to the tripID
                 #This scheme helps reduce storage space in the database
                 trip_ID = entity.vehicle.trip.trip_id
-                #get everything after the first colon in the trip_id
+
+                #trip_ID is in format XXXXXX:XXXXXX:block_id - everything after the first colon should yield a unique value
                 trip_ID = trip_ID[trip_ID.find(":")+1:]
-                #delete the next colon and turn it to an integer
-                trip_ID = int(trip_ID[:trip_ID.find(":")])
+                trip_ID = trip_ID.replace(":","")
+                trip_ID = int(trip_ID)
 
                 if trip_ID in trip_ids_df.values:
                     trip_ID_ref = int(trip_ids_df.loc[trip_ids_df['Trip_ID'] == trip_ID]['Trip_ID_ref'].values[0])
