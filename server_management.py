@@ -32,6 +32,7 @@ dns.resolver.default_resolver.nameservers=['8.8.8.8']
 client = pymongo.MongoClient(os.environ['MONGO_URL'])
 mydb = client.Cluster0
 mycol = mydb["transit_speed_data"]
+header_col = mydb["headers"]
 
 #from graphing import graph_variables
 #set active directory to file location
@@ -43,6 +44,19 @@ else:
     newDirectory = directory[:(directory.rfind("\\")+1)]
 os.chdir(newDirectory)
 
+def get_headers_df():
+    #get all headers from mongodb and create a pandas dataframe. Return the dataframe. Columns are HeaderID and Header
+    myquery = {}
+    mydoc = header_col.find(myquery)
+    df = pd.DataFrame(list(mydoc))
+    #df = df.drop(columns=["_id"])
+
+    #if blank, return empty dataframe with columns HeaderID and Header
+    if df.empty:
+        df = pd.DataFrame(columns = ["Header_ID","Header"])
+    df = pd.concat([df, pd.DataFrame([{"Header_ID": 0, "Header": "Placeholder"}])], ignore_index=True)
+    return df
+
 def download_from_mongo():
     print("Downloading data from MongoDB")
     #download all data from mongo
@@ -51,12 +65,13 @@ def download_from_mongo():
     df = pd.DataFrame(list(mydoc))
     df = df.drop(columns=["_id"])
 
+    print("Downloaded. Saving...")
+
     earliest_timestamp = df["Time"].min()
     latest_timestamp = df["Time"].max()
     
     earliest_date = datetime.datetime.fromtimestamp(earliest_timestamp).strftime('%Y-%m-%d')
     latest_date = datetime.datetime.fromtimestamp(latest_timestamp).strftime('%Y-%m-%d')
-    print("Downloaded. Saving...")
 
     df.to_csv(f"historical speed data/{earliest_date}_to_{latest_date}-timeline.csv", index=False)
     print("Saved.")
@@ -74,6 +89,6 @@ def download_and_clear():
     clear_mongo()
     return
 
-clear_mongo()
+#download_from_mongo()
 
 #download_and_clear()
